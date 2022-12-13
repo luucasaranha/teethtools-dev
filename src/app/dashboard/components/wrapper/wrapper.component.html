@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <img src="assets/img/logo.jpg" class="logo-size">
+</mat-toolbar>
+
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="opened" disableClose="true">
+    <mat-nav-list>
+      <mat-list-item (click)="isExpanded = !isExpanded">
+        <mat-icon mat-list-icon [ngClass]="{isExpanded}">menu</mat-icon>
+      </mat-list-item>
+
+<!--      <mat-list-item [routerLink]="'home'">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">Home</span>
+      </mat-list-item>-->
+
+      <mat-list-item [routerLink]="'patients'">
+        <mat-icon mat-list-icon>group</mat-icon>
+        <span *ngIf="isExpanded" class="menu-item">Pacientes</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div id="outer">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

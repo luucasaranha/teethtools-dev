@@ -1,0 +1,19 @@
+<div>
+  <mat-card class="mat-elevation-z8">
+    <form [formGroup]="formData" class="margin-form">
+
+      <mat-form-field class="full-width">
+        <mat-label>Usuário</mat-label>
+        <input autofocus formControlName="userName" matInput placeholder="Usuário" required type="text">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Senha</mat-label>
+        <input formControlName="password" matInput placeholder="Senha" required type="password">
+      </mat-form-field>
+      <mat-card-actions class="center-button">
+        <button (click)="onClickSubmit()" mat-raised-button>Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

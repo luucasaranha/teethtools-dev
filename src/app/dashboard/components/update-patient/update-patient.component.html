@@ -1,0 +1,245 @@
+<div>
+  <mat-card class="mat-elevation-z8">
+
+    <mat-toolbar color="accent">
+      <span class="header">Editar paciente</span>
+    </mat-toolbar>
+
+    <form [formGroup]="form" class="margin-form">
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Nome</mat-label>
+              <input formControlName="name" matInput placeholder="Nome"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Última visita</mat-label>
+              <input formControlName="lastVisit"
+                     matInput
+                     placeholder="Ultima visita">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Data de nascimento (dd/mm/aaaa)</mat-label>
+              <input
+                formControlName="birthDate"
+                matInput
+                placeholder="Data de nascimento (dd/mm/aaaa)"
+              />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Idade</mat-label>
+              <input formControlName="age" matInput placeholder="Idade"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <label class="margin-form">Gênero</label>
+      <div>
+        <mat-radio-group class="item" formControlName="gender">
+          <mat-radio-button value="M">Masculino</mat-radio-button>
+          <mat-radio-button value="F">Feminino</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Endereço</mat-label>
+              <input
+                formControlName="address"
+                mask=""
+                matInput
+                placeholder="Endereço"
+              />
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>CEP</mat-label>
+              <input formControlName="cep" matInput placeholder="CEP"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Bairro</mat-label>
+              <input formControlName="district" matInput placeholder="Bairro"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Cidade</mat-label>
+              <input formControlName="cep" matInput placeholder="Cidade"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Estado</mat-label>
+              <input formControlName="district" matInput placeholder="Estado"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Whatsapp</mat-label>
+              <input formControlName="whatsapp" matInput placeholder="Whatsapp"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Instagram</mat-label>
+              <input formControlName="instagram" matInput placeholder="Instagram"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Facebook</mat-label>
+              <input formControlName="facebook" matInput placeholder="Facebook"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Como nos conheceu</mat-label>
+              <mat-select formControlName="origin">
+                <mat-option value="N/A">Nenhuma</mat-option>
+                <mat-option value="Internet">Internet</mat-option>
+                <mat-option value="Anuncio">Anuncio</mat-option>
+                <mat-option value="Amigo">Amigo</mat-option>
+                <mat-option value="Rede social">Rede social</mat-option>
+                <mat-option value="Outros">Outros</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Canal para comunicação</mat-label>
+              <mat-select formControlName="bestCommunicationChannel">
+                <mat-option value="N/A">Nenhuma</mat-option>
+                <mat-option value="Whatsapp">Whatsapp</mat-option>
+                <mat-option value="Instagram">Instagram</mat-option>
+                <mat-option value="Facebook">Facebook</mat-option>
+                <mat-option value="Email">Email</mat-option>
+                <mat-option value="Telefone">Telefone</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Email"/>
+      </mat-form-field>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option value="EM TRATAMENTO">EM TRATAMENTO</mat-option>
+                <mat-option value="FINALIZADO">FINALIZADO</mat-option>
+                <mat-option value="OUTROS">OUTROS</mat-option>
+                <mat-option value="AUSENTE">AUSENTE</mat-option>
+                <mat-option value="CANCELADO">CANCELADO</mat-option>
+                <mat-option value="ATIVO">ATIVO</mat-option>
+                <mat-option value="NENHUM">NENHUM</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Criticidade</mat-label>
+              <mat-select formControlName="criticity">
+                <mat-option value="ALTA">ALTA</mat-option>
+                <mat-option value="MÉDIA">MÉDIA</mat-option>
+                <mat-option value="BAIXA">BAIXA</mat-option>
+                <mat-option value="N/A">NENHUM</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Especialidade</mat-label>
+              <input formControlName="speciality" matInput placeholder="Especialidade"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Procedimentos</mat-label>
+              <input formControlName="proceeds" matInput placeholder="Procedimentos"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <mat-form-field class="full-width">
+        <mat-label>Ações</mat-label>
+        <input formControlName="action" matInput placeholder="Ações"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Observações</mat-label>
+        <input formControlName="observations" matInput placeholder="Observações"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Orçamento</mat-label>
+        <input formControlName="financial" matInput placeholder="Orçamento"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Valor Investido</mat-label>
+        <input (click)="formatCurrencyOnKeyPress('investedValue')" (input)="formatCurrencyOnKeyPress('investedValue')" formControlName="investedValue"
+               matInput
+               placeholder="Valor Investido"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Valor em aberto</mat-label>
+        <input (click)="formatCurrencyOnKeyPress('openValue')" (input)="formatCurrencyOnKeyPress('openValue')" formControlName="openValue"
+               matInput
+               placeholder="Valor em aberto"/>
+      </mat-form-field>
+
+      <mat-card-actions class="center-button">
+        <button (click)="submitBtnClick()" class="button-margin" color="accent" mat-raised-button>Salvar</button>
+        <button (click)="onBackPressed()" class="button-margin" mat-raised-button>Cancelar</button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

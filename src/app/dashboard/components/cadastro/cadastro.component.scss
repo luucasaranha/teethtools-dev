@@ -1,0 +1,33 @@
+mat-card {
+  max-width: 70%;
+  margin: 2em auto;
+  border-radius: 8px;
+  overflow: hidden !important;
+  display: flex;
+}
+
+.container-wrap {
+  flex-wrap: wrap;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.header {
+  margin: auto;
+}
+
+.margin-form {
+  margin: 12px;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-margin {
+  margin-left:10px;
+}

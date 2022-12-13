@@ -1,0 +1,33 @@
+export class Patient {
+  constructor(
+    public id: string = "",
+    public criticity: string= "",
+    public lastVisit: string= "",
+    public name: string= "",
+    public origin: string= "",
+    public birthDate: string= "",
+    public age: string= "",
+    public gender: string= "",
+    public status: string= "",
+    public anniversaryMonth: string= "",
+    public address: string= "",
+    public cep: string= "",
+    public district: string= "",
+    public number: string= "",
+    public city: string = "",
+    private state: string = "",
+    public whatsapp: string= "",
+    public instagram: string= "",
+    public facebook: string= "",
+    public email: string= "",
+    public bestCommunicationChannel: string= "",
+    public speciality: string= "",
+    public proceeds: string= "",
+    public financial: string= "",
+    public investedValue: string= "",
+    public openValue: string= "",
+    public action: string= "",
+    public observations: string= "",
+  ) {
+  }
+}
