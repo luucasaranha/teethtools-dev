@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class CreatePatientServiceService {
-  private readonly prdBaseUrl = 'https://odonto-api-app.herokuapp.com/api';
+  private readonly prdBaseUrl = 'https://odonto-api-dev.herokuapp.com/api';
   private readonly prdInsertUrl = this.prdBaseUrl + '/v1/sheet-patients/insert';
 
   // Use environment variable to avoid code like this
