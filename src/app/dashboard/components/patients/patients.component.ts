@@ -1,31 +1,25 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable, of, tap} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {PatientsService} from '../../services/list-patient/patients.service';
 import {DeletePatientService} from "../../services/delete-patient/delete-patient.service";
 import {UpdatePatientService} from '../../services/update-patient/update-patient.service';
-import {fetchAndActivate} from "firebase/remote-config";
 import {FirebaseApp} from "@angular/fire/app";
-import {getRemoteConfig, RemoteConfig} from "@angular/fire/remote-config";
-import {SystemAccessConfigService} from "../../remoteconfig/system-access-config.service";
 import {Patient} from "../../model/Patient";
-import {MatSort, Sort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-patients',
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.scss'],
 })
-export class PatientsComponent implements OnInit, AfterViewInit {
-  patientsList: Observable<Patient[]>;
-  rawPatientsList: Patient[]
+export class PatientsComponent implements OnInit {
 
-  dataSource: any
+  public patientsList: Observable<Patient[]> = new Observable<Patient[]>();
+  private rawPatientsList: Patient[] = []
 
-  private remoteConfig: RemoteConfig = getRemoteConfig()
+  public searchText: string = ''
 
-  displayedColumns = [
+  public displayedColumns = [
     'name',
     'gender',
     'lastVisit',
@@ -35,129 +29,48 @@ export class PatientsComponent implements OnInit, AfterViewInit {
     'actions',
   ];
 
-  @ViewChild(MatSort) sort = new MatSort()
-
-  ngAfterViewInit() {
-    // this.setRemoteConfigSettings()
-  }
-
   constructor(
     private patientService: PatientsService,
     private deletePatientService: DeletePatientService,
     private updatePatientService: UpdatePatientService,
     private firebase: FirebaseApp,
     private router: Router,
-    private systemAccessConfig: SystemAccessConfigService,
-    private changeDetectorRef: ChangeDetectorRef
   ) {
-    // this.setRemoteConfigSettings();
-    this.patientsList = new Observable<Patient[]>()
-    this.rawPatientsList = []
+    this.getPatients()
   }
 
-  sortData() {
-    let sortFunction =
-      (items: Patient[], sort: MatSort): Patient[] =>  {
-      debugger
-        if (!sort.active || sort.direction === '') {
-          return items;
-        }
-        return items.sort((a: Patient, b: Patient) => {
-          let comparatorResult = 0;
-          switch (sort.active) {
-            case 'name':
-              comparatorResult = a.name.localeCompare(b.name);
-              break;
-            case 'gender':
-              comparatorResult = a.gender.localeCompare(b.gender);
-              break;
-            case 'lastVisit':
-              comparatorResult = a.lastVisit.localeCompare(b.lastVisit);
-              break;
-            case 'status':
-              comparatorResult = a.status.length - b.status.length;
-              break;
-            case 'number':
-              comparatorResult = a.number.length - b.number.length;
-              break;
-            case 'anniversaryMonth':
-              comparatorResult = a.anniversaryMonth.length - b.anniversaryMonth.length;
-              break;
-            case 'actions':
-              comparatorResult = a.action.length - b.action.length;
-              break;
-            default:
-              comparatorResult = a.name.localeCompare(b.name);
-              break;
-          }
-          return comparatorResult * (sort.direction == 'asc' ? 1 : -1);
-        });
-      };
-    return sortFunction;
-  }
-
-  async getPatients() {
+  private getPatients() {
     this.patientsList = this.patientService.getPatients();
     this.patientsList.subscribe(patient => {
       this.rawPatientsList = patient
-      this.dataSource = new MatTableDataSource(patient)
-      this.dataSource.sortData = this.sortData();
-      this.dataSource.sort = this.sort
-      console.log(this.dataSource)
-      console.log(this.dataSource.sort)
     })
   }
 
-  async retrieveRemoteConfigData() {
-    this.systemAccessConfig.retrieveRemoteConfigData().then((hasAccess) => {
-      if (hasAccess) {
-        this.patientsList = this.patientService.getPatients();
-        this.patientsList.subscribe(patient => {
-          this.rawPatientsList = patient
-          this.dataSource = new MatTableDataSource(patient)
-          this.dataSource.sort = this.sort
-          console.log(this.dataSource)
-          console.log(this.dataSource.sort)
-        })
-      } else {
-        this.navigateToUnavailablePage()
-      }
-    })
-  }
+  ngOnInit(): void {}
 
-
-  private setRemoteConfigSettings() {
-    this.remoteConfig.defaultConfig = require('../../../../../remote_config_defaults.json');
-    this.remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
-  }
-
-  ngOnInit(): void {
-    this.getPatients()
-
-    // fetchAndActivate(this.remoteConfig).then(() => {
-    //   this.retrieveRemoteConfigData()
-    // })
-  }
-
-  onAdd() {
+  public onAdd() {
     this.navigateToCadastroPage()
   }
 
-  onUpdate(element: any) {
+  public onUpdate(element: any) {
     this.navigateToUpdatePage(element)
   }
 
-  onDelete(element: any) {
-    let deleted = this.deletePatientService.deletePatient(element['id'])
-    if (deleted) {
-      alert("Paciente " + element['name'] + " deletado com sucesso")
-      this.reloadList()
-    } else {
-      alert("Falha ao deletar o paciente")
-    }
+  public onDelete(element: any) {
+    this.deletePatientService.deletePatient(element['id'])
+      .subscribe({
+        complete: () => {
+          alert("Paciente " + element['name'] + " deletado com sucesso")
+          this.reloadList()
+        },
+        error: err => {
+          alert("Ocorreu um erro ao deletar o paciente")
+          console.log(err)
+        }
+      })
   }
 
-  onFilterByName(element: any) {
+  public onFilterByName(element: any) {
     let filteredList: Patient[] = []
     let name = element.target.value.toLowerCase()
 
@@ -170,19 +83,24 @@ export class PatientsComponent implements OnInit, AfterViewInit {
     this.patientsList = of(filteredList)
   }
 
-  reloadList() {
-    this.patientsList = this.patientService.getPatients()
+  private reloadList() {
+    this.patientService.getPatients().subscribe({
+      next: (response) => {
+        this.rawPatientsList = response
+        this.patientsList = of(response)
+      },
+      error: (error) => {
+        alert("Ocorreu um erro, tente novamente mais tarde")
+        console.log(error)
+      }
+    })
   }
 
-  navigateToUnavailablePage() {
-    this.router.navigate(['system-unavailable'])
-  }
-
-  navigateToCadastroPage() {
+  private navigateToCadastroPage() {
     this.router.navigate(['cadastro'])
   }
 
-  navigateToUpdatePage(element: any) {
+  private navigateToUpdatePage(element: any) {
     this.router.navigate(['update-patient', element])
   }
 }

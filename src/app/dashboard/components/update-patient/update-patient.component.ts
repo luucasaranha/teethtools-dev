@@ -125,6 +125,7 @@ export class UpdatePatientComponent implements OnInit {
       this.rawObject = response
 
       if (this.id == this.rawObject['id']) {
+        console.log(JSON.stringify(response))
         alert("Paciente editado com sucesso.")
         this.location.back()
       } else {

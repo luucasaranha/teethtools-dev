@@ -88,13 +88,13 @@
           <td>
             <mat-form-field class="full-width">
               <mat-label>Cidade</mat-label>
-              <input formControlName="cep" matInput placeholder="Cidade"/>
+              <input formControlName="city" matInput placeholder="Cidade"/>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="full-width">
               <mat-label>Estado</mat-label>
-              <input formControlName="district" matInput placeholder="Estado"/>
+              <input formControlName="state" matInput placeholder="Estado"/>
             </mat-form-field>
           </td>
         </tr>
@@ -223,14 +223,16 @@
 
       <mat-form-field class="full-width">
         <mat-label>Valor Investido</mat-label>
-        <input (click)="formatCurrencyOnKeyPress('investedValue')" (input)="formatCurrencyOnKeyPress('investedValue')" formControlName="investedValue"
+        <input (click)="formatCurrencyOnKeyPress('investedValue')" (input)="formatCurrencyOnKeyPress('investedValue')"
+               formControlName="investedValue"
                matInput
                placeholder="Valor Investido"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Valor em aberto</mat-label>
-        <input (click)="formatCurrencyOnKeyPress('openValue')" (input)="formatCurrencyOnKeyPress('openValue')" formControlName="openValue"
+        <input (click)="formatCurrencyOnKeyPress('openValue')" (input)="formatCurrencyOnKeyPress('openValue')"
+               formControlName="openValue"
                matInput
                placeholder="Valor em aberto"/>
       </mat-form-field>

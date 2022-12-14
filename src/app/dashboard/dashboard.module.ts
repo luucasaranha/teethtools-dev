@@ -20,7 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {HomeComponent} from './components/home/home.component';
 import {PatientsComponent} from './components/patients/patients.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from "@angular/material/menu";
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
 import {MAT_DATE_LOCALE} from "@angular/material/core";
@@ -33,7 +33,7 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     PatientsComponent,
     UpdatePatientComponent,
-    LoginComponent,
+    LoginComponent
   ],
     imports: [
         CommonModule,
@@ -57,6 +57,7 @@ import { LoginComponent } from './components/login/login.component';
         MatSelectModule,
         MatButtonModule,
         MatMenuModule,
+        FormsModule   
     ]
 })
 export class DashboardModule {}

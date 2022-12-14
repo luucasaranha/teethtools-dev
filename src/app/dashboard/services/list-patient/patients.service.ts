@@ -9,7 +9,7 @@ import {User} from "../../model/user";
   providedIn: 'root',
 })
 export class PatientsService {
-  private readonly baseURL = 'https://odonto-api-dev.herokuapp.com/api';
+  private readonly baseURL = 'https://odonto-api-app.herokuapp.com/api';
   private readonly patientsAPI = this.baseURL + '/v1/sheet-patients';
 
   constructor(private httpClient: HttpClient) {}
@@ -19,27 +19,11 @@ export class PatientsService {
 
     return this.httpClient
       .get<Patient[]>(this.patientsAPI, { headers: authorizationHeader })
-      .pipe(
-        first(),
-        tap((patients) => {
-          // console.log(patients)
-        })
-      );
   }
 
   getPatients() {
-    return this.httpClient
-      .get<Patient[]>(this.patientsAPI)
-      .pipe(
-        first(),
-        tap((patients) => {
-          // console.log(patients)
-        })
-      );
+    return this.httpClient.get<Patient[]>(this.patientsAPI)
   }
-
-
-
 
   generateHash(user: User): string {
     return btoa(user.username + ":" + user.password)
