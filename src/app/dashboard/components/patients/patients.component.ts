@@ -6,6 +6,7 @@ import {DeletePatientService} from "../../services/delete-patient/delete-patient
 import {UpdatePatientService} from '../../services/update-patient/update-patient.service';
 import {FirebaseApp} from "@angular/fire/app";
 import {Patient} from "../../model/Patient";
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-patients',
@@ -40,7 +41,12 @@ export class PatientsComponent implements OnInit {
   }
 
   private getPatients() {
-    this.patientsList = this.patientService.getPatients();
+
+    this.patientsList = this.patientService
+      .getPatientsAuthenticateMode(
+        new User('dennis', 'instdenis8569')
+      );
+
     this.patientsList.subscribe(patient => {
       this.rawPatientsList = patient
     })
