@@ -8,8 +8,8 @@ export class CreatePatientServiceService {
   private readonly prdBaseUrl = 'https://odonto-api-app.herokuapp.com/api';
   private readonly prdInsertUrl = this.prdBaseUrl + '/v1/sheet-patients/insert';
 
-  // Use environment variable to avoid code like this
-  private readonly devBaseUrl = "localhost:8080/api"
+  // Use environmentDev variable to avoid code like this
+  private readonly devBaseUrl = 'https://odonto-api-dev.herokuapp.com/api'
   private readonly devInsertUrl = this.devBaseUrl + '/v1/sheet-patients/insert';
 
   constructor(private httpClient: HttpClient) { }
@@ -18,7 +18,7 @@ export class CreatePatientServiceService {
 
   createPatient(patientJson: string) {
     return this.httpClient.post(
-      this.prdInsertUrl,
+      this.devInsertUrl,
       patientJson,
       this.options
     ).subscribe(response => {

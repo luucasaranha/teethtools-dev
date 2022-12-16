@@ -1,14 +1,16 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {IPatient} from '../../model/IPatient';
+import {environmentDev} from "../../../../../environment.dev";
+import {environment} from "../../../../../environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UpdatePatientService {
 
-  private readonly baseURL = 'https://odonto-api-app.herokuapp.com/api';
-  private readonly updateURL = this.baseURL + '/v1/sheet-patients/update';
+  private readonly baseUrl = 'https://odonto-api-dev.herokuapp.com/api'
+  private readonly updateURL = this.baseUrl + '/v1/sheet-patients/update';
 
   constructor(private httpClient: HttpClient) {
   }
