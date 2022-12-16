@@ -44,7 +44,7 @@ export class PatientsComponent implements OnInit {
 
     this.patientsList = this.patientService
       .getPatientsAuthenticateMode(
-        new User('dennis', 'instdenis8569')
+        new User('dennis', 'instdendsais8569')
       );
 
     this.patientsList.subscribe(patient => {
