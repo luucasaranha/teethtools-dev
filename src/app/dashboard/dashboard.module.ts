@@ -23,8 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from "@angular/material/menu";
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
-import {MAT_DATE_LOCALE} from "@angular/material/core";
 import { LoginComponent } from './components/login/login.component';
+import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import { LoginComponent } from './components/login/login.component';
         MatSelectModule,
         MatButtonModule,
         MatMenuModule,
-        FormsModule   
+        FormsModule,
+        NgxMaskModule
     ]
 })
 export class DashboardModule {}
