@@ -42,7 +42,7 @@
 
       <ng-container matColumnDef="whatsapp">
         <th mat-header-cell *matHeaderCellDef>Whatsapp</th>
-        <td mat-cell *matCellDef="let element">{{ element.whatsapp }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.whatsapp | mask:'(00) 0000-0000'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">

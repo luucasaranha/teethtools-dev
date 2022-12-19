@@ -1,4 +1,4 @@
-<div>
+<div xmlns:mask="http://www.w3.org/1999/xhtml">
   <mat-card class="mat-elevation-z8">
 
     <mat-toolbar color="accent">
@@ -30,9 +30,10 @@
         <tr>
           <td>
             <mat-form-field class="full-width">
-              <mat-label>Data de nascimento (dd/mm/aaaa)</mat-label>
+              <mat-label>Data de nascimento</mat-label>
               <input
                 formControlName="birthDate"
+                mask="00/00/0000"
                 matInput
                 placeholder="Data de nascimento (dd/mm/aaaa)"
               />
@@ -71,7 +72,7 @@
           <td>
             <mat-form-field class="full-width">
               <mat-label>CEP</mat-label>
-              <input formControlName="cep" matInput placeholder="CEP"/>
+              <input formControlName="cep" mask="00000-000"matInput placeholder="CEP"/>
             </mat-form-field>
           </td>
           <td>
@@ -105,7 +106,7 @@
           <td>
             <mat-form-field class="full-width">
               <mat-label>Whatsapp</mat-label>
-              <input formControlName="whatsapp" matInput placeholder="Whatsapp"/>
+              <input formControlName="whatsapp" mask="(00) 00000-0000" matInput placeholder="Whatsapp" />
             </mat-form-field>
           </td>
           <td>
