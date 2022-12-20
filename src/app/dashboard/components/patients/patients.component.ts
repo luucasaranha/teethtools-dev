@@ -58,6 +58,7 @@ export class PatientsComponent implements OnInit {
   }
 
   public onUpdate(element: any) {
+    console.log(JSON.stringify(element))
     this.navigateToUpdatePage(element)
   }
 
