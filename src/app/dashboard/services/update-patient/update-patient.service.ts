@@ -20,14 +20,16 @@ export class UpdatePatientService {
 
   updatePatient(id: string, patient: any) {
     const authorizationHeader = new HttpHeaders(
-      {Authorization: 'Basic ' + this.generateHash(
-        new User('dennis', 'instdenis8569'))
+      {
+        Authorization: 'Basic ' + this.generateHash(new User('dennis', 'instdenis8569'))
       });
 
 
     return this.httpClient.put(
       this.updateURL + '?id=' + id,
-      patient, {headers: authorizationHeader}
+      patient, {
+        headers: authorizationHeader
+      }
     )
   }
 
