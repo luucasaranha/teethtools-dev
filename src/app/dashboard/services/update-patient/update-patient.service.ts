@@ -1,8 +1,5 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable, isDevMode} from '@angular/core';
-import {IPatient} from '../../model/IPatient';
-import {environmentDev} from "../../../../../environment.dev";
-import {environment} from "../../../../../environment.prod";
+import {Injectable} from '@angular/core';
 import {User} from "../../model/user";
 
 @Injectable({
