@@ -25,6 +25,7 @@ export class UpdatePatientComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.form = this.formBuilder.group({
       action: [null],
@@ -120,16 +121,15 @@ export class UpdatePatientComponent implements OnInit {
     if (!this.validateForm()) {
       return
     }
-    let response = this.updateService.updatePatient(this.id, this.form.value)
-    response.subscribe(response => {
-      this.rawObject = response
-
-      if (this.id == this.rawObject['id']) {
+    this.updateService.updatePatient(this.id, this.form.value).subscribe({
+      next: response => {
         console.log(JSON.stringify(response))
         alert("Paciente editado com sucesso.")
-        this.location.back()
-      } else {
-        alert("Falha ao editar o paciente.")
+        this.router.navigate(['patients'])
+      },
+      error: err => {
+        alert("Falha ao editar o paciente.}")
+        console.log(err)
       }
     })
   }
