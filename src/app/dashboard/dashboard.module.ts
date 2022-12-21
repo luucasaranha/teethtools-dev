@@ -24,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from "@angular/material/menu";
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
 import { LoginComponent } from './components/login/login.component';
+import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoginComponent } from './components/login/login.component';
         MatButtonModule,
         MatMenuModule,
         FormsModule,
+        NgxMaskModule
     ]
 })
 export class DashboardModule {}

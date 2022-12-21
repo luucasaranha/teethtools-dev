@@ -33,8 +33,8 @@
       </ng-container>
 
       <ng-container matColumnDef="whatsapp">
-        <th *matHeaderCellDef mat-header-cell>Whatsapp</th>
-        <td *matCellDef="let element" mat-cell>{{ element.whatsapp }}</td>
+        <th mat-header-cell *matHeaderCellDef>Whatsapp</th>
+        <td mat-cell *matCellDef="let element">{{ element.whatsapp | mask:'(00) 0000-0000'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">

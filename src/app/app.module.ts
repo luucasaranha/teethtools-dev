@@ -24,7 +24,9 @@ import {SystemUnavailableComponent} from './system-unavailable/system-unavailabl
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideRemoteConfig(() => getRemoteConfig()),
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
