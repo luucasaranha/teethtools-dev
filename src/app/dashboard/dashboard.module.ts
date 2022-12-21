@@ -23,7 +23,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from "@angular/material/menu";
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
-import {MAT_DATE_LOCALE} from "@angular/material/core";
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
@@ -33,7 +32,7 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     PatientsComponent,
     UpdatePatientComponent,
-    LoginComponent
+    LoginComponent,
   ],
     imports: [
         CommonModule,
@@ -57,7 +56,7 @@ import { LoginComponent } from './components/login/login.component';
         MatSelectModule,
         MatButtonModule,
         MatMenuModule,
-        FormsModule   
+        FormsModule,
     ]
 })
 export class DashboardModule {}

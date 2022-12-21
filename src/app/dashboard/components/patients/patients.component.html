@@ -1,88 +1,84 @@
-<div *ngIf="patientsList | async as patients; else loading">
   <h1>PACIENTES</h1>
-  <mat-card class="mat-elevation-z8">
-
-    <mat-form-field>
-      <input matInput
-             placeholder="Procurar paciente"
-             (input)="onFilterByName($event)"
-             [(ngModel)]="searchText">
-    </mat-form-field>
-
-    <table
-      mat-table
-      [dataSource]="patients"
-      matSort
-      class="mat-elevation-z8">
+  <div>
+    <div>
+      <mat-form-field appearance="fill">
+        <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Procurar paciente">
+      </mat-form-field>
+    </div>
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <th *matHeaderCellDef mat-header-cell>Nome</th>
+        <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="gender">
-        <th mat-header-cell *matHeaderCellDef>Gênero</th>
-        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+        <th *matHeaderCellDef mat-header-cell>Gênero</th>
+        <td *matCellDef="let element" mat-cell>{{ element.gender }}</td>
       </ng-container>
 
       <ng-container matColumnDef="lastVisit">
-        <th mat-header-cell *matHeaderCellDef>Ultima visita</th>
-        <td mat-cell *matCellDef="let element">{{ element.lastVisit }}</td>
+        <th *matHeaderCellDef mat-header-cell>Ultima visita</th>
+        <td *matCellDef="let element" mat-cell>{{ element.lastVisit }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        <th *matHeaderCellDef mat-header-cell>Status</th>
+        <td *matCellDef="let element" mat-cell>{{ element.status }}</td>
       </ng-container>
 
       <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef>Telefone</th>
-        <td mat-cell *matCellDef="let element">{{ element.number }}</td>
+        <th *matHeaderCellDef mat-header-cell>Telefone</th>
+        <td *matCellDef="let element" mat-cell>{{ element.number }}</td>
       </ng-container>
 
       <ng-container matColumnDef="whatsapp">
-        <th mat-header-cell *matHeaderCellDef>Whatsapp</th>
-        <td mat-cell *matCellDef="let element">{{ element.whatsapp }}</td>
+        <th *matHeaderCellDef mat-header-cell>Whatsapp</th>
+        <td *matCellDef="let element" mat-cell>{{ element.whatsapp }}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        <th *matHeaderCellDef mat-header-cell>Email</th>
+        <td *matCellDef="let element" mat-cell>{{ element.email }}</td>
       </ng-container>
 
       <ng-container matColumnDef="anniversaryMonth">
-        <th mat-header-cell *matHeaderCellDef>
+        <th *matHeaderCellDef mat-header-cell>
           Mês do aniversário
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td *matCellDef="let element" mat-cell>
           {{ element.anniversaryMonth }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>
-          <button mat-mini-fab aria-label="Adicionar paciente" (click)="onAdd()">
+        <th *matHeaderCellDef mat-header-cell>
+          <button (click)="onAdd()" aria-label="Adicionar paciente" mat-mini-fab>
             <mat-icon>add</mat-icon>
           </button>
         </th>
 
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+        <td *matCellDef="let element" mat-cell>
+          <button [matMenuTriggerFor]="menu" color="accent" mat-icon-button>
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onUpdate(element)">Editar paciente</button>
-            <button mat-menu-item (click)="onDelete(element); searchText = '' ">Apagar paciente</button>
+            <button (click)="onUpdate(element)" mat-menu-item>Editar paciente</button>
+            <button (click)="onDelete(element)" mat-menu-item>Apagar paciente</button>
           </mat-menu>
         </td>
       </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+
     </table>
-  </mat-card>
-</div>
+    <mat-paginator #paginator
+                   [pageSizeOptions]="[2,5, 10, 25, 100]"
+                   [pageSize]="25">
+    </mat-paginator>
+  </div>
 
 <ng-template #loading>
   <mat-spinner color="accent" diameter="64"></mat-spinner>
