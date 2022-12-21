@@ -33,7 +33,7 @@ import {NgxMaskModule} from "ngx-mask";
     HomeComponent,
     PatientsComponent,
     UpdatePatientComponent,
-    LoginComponent
+    LoginComponent,
   ],
     imports: [
         CommonModule,

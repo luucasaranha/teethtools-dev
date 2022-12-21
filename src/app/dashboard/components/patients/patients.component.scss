@@ -1,31 +1,9 @@
-table {
-  width: 100%;
-  display: table-row;
-}
-
-mat-card {
-  border-radius: 8px;
-  overflow: hidden !important;
+.container{
   display: flex;
   flex-direction: column;
 }
 
-th {
-  text-align: center
+.search-container{
+  margin-top: 10px;
+  display: flex;
 }
-
-td {
-  text-align: center
-}
-
-.button-margin {
-  margin-left: 8px;
-}
-
-.mat-accent {
-  color: #b3893d;
-}
-
-html { background-color: #f6f8f9; }
-
-
