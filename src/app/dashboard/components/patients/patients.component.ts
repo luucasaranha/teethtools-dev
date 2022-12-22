@@ -7,6 +7,7 @@ import {User} from "../../model/user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {response} from "express";
 
 @Component({
   selector: 'app-patients',
@@ -67,7 +68,7 @@ export class PatientsComponent implements OnInit {
   }
 
   private loadList() {
-    (this.patientService.getPatientsAuthenticateMode(new User('dennis', 'instdenis8569')).subscribe({
+    this.patientService.getPatients().subscribe({
       next: (response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
@@ -77,7 +78,7 @@ export class PatientsComponent implements OnInit {
         alert("Ocorreu um erro, tente novamente mais tarde")
         console.log(error)
       }
-    }))
+    })
   }
 
   private navigateToCadastroPage() {

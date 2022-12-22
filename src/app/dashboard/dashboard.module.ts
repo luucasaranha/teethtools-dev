@@ -34,7 +34,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     HomeComponent,
     PatientsComponent,
     UpdatePatientComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
