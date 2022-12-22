@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable, of} from 'rxjs';
 import {PatientsService} from '../../services/list-patient/patients.service';
 import {DeletePatientService} from "../../services/delete-patient/delete-patient.service";
-import {UpdatePatientService} from '../../services/update-patient/update-patient.service';
-import {FirebaseApp} from "@angular/fire/app";
 import {Patient} from "../../model/Patient";
 import {User} from "../../model/user";
 import {MatTableDataSource} from "@angular/material/table";

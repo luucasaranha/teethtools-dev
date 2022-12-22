@@ -53,6 +53,7 @@
         <mat-radio-group class="item" formControlName="gender">
           <mat-radio-button value="M">Masculino</mat-radio-button>
           <mat-radio-button value="F">Feminino</mat-radio-button>
+          <mat-radio-button value="Nao declarado">Não declarado</mat-radio-button>
         </mat-radio-group>
       </div>
 
@@ -72,7 +73,7 @@
           <td>
             <mat-form-field class="full-width">
               <mat-label>CEP</mat-label>
-              <input formControlName="cep" mask="00000-000"matInput placeholder="CEP"/>
+              <input formControlName="cep" mask="00000-000" matInput/>
             </mat-form-field>
           </td>
           <td>
@@ -103,6 +104,12 @@
 
       <table class="full-width">
         <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Telefone</mat-label>
+              <input formControlName="number" mask="(00) 00000-0000" matInput placeholder="Telefone" />
+            </mat-form-field>
+          </td>
           <td>
             <mat-form-field class="full-width">
               <mat-label>Whatsapp</mat-label>

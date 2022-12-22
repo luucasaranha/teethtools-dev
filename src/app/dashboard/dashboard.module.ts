@@ -25,6 +25,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
 import { LoginComponent } from './components/login/login.component';
 import {NgxMaskModule} from "ngx-mask";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -35,30 +36,31 @@ import {NgxMaskModule} from "ngx-mask";
     UpdatePatientComponent,
     LoginComponent,
   ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        HttpClientModule,
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    HttpClientModule,
 
-        // Material
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        MatToolbarModule,
-        MatTableModule,
-        MatCardModule,
-        MatPaginatorModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatSortModule,
-        ReactiveFormsModule,
-        MatRadioModule,
-        MatInputModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatMenuModule,
-        FormsModule,
-        NgxMaskModule
-    ]
+    // Material
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSortModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatMenuModule,
+    FormsModule,
+    NgxMaskModule,
+    MatExpansionModule
+  ]
 })
 export class DashboardModule {}

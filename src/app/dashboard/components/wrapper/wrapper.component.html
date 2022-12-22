@@ -2,22 +2,50 @@
   <img src="assets/img/logo.jpg" class="logo-size">
 </mat-toolbar>
 
+
+
+
 <mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode="side" opened="opened" disableClose="true">
+  <mat-sidenav #sidenav mode="side" [opened]="true">
+
     <mat-nav-list>
-      <mat-list-item (click)="isExpanded = !isExpanded">
-        <mat-icon mat-list-icon [ngClass]="{isExpanded}">menu</mat-icon>
+
+      <mat-list-item (click)="toggleState()">
+        <mat-icon mat-list-icon >menu</mat-icon>
       </mat-list-item>
 
-<!--      <mat-list-item [routerLink]="'home'">
+      <mat-list-item [routerLink]="'home'">
         <mat-icon mat-list-icon>home</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Home</span>
-      </mat-list-item>-->
-
-      <mat-list-item [routerLink]="'patients'">
-        <mat-icon mat-list-icon>group</mat-icon>
-        <span *ngIf="isExpanded" class="menu-item">Pacientes</span>
+        <span [@menuAnimation]="state" class="menu-item">Página inicial</span>
       </mat-list-item>
+
+      <mat-expansion-panel>
+
+        <mat-expansion-panel-header class="header">
+          <mat-icon mat-list-icon>group</mat-icon>
+          <span [@menuAnimation]="state" class="menu-item">Pacientes</span>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list class="submenu">
+          <mat-list-item [routerLink]="'patients'">
+            <mat-icon mat-list-icon>group</mat-icon>
+            <span [@menuAnimation]="state" class="menu-item">Listar</span>
+          </mat-list-item>
+
+          <mat-list-item [routerLink]="'cadastro'">
+            <mat-icon>group_add</mat-icon>
+            <span [@menuAnimation]="state" class="menu-item">Cadastrar</span>
+          </mat-list-item>
+
+          <mat-list-item [routerLink]="'home'">
+            <mat-icon>list</mat-icon>
+            <span [@menuAnimation]="state" class="menu-item">Ficha clínica</span>
+          </mat-list-item>
+
+        </mat-nav-list>
+
+      </mat-expansion-panel>
+
     </mat-nav-list>
   </mat-sidenav>
 
