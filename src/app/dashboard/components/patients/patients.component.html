@@ -1,6 +1,6 @@
   <h1>PACIENTES</h1>
-  <div>
-    <div>
+  <div class="container">
+    <div class="search-container">
       <mat-form-field appearance="fill">
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Procurar paciente">
       </mat-form-field>
@@ -18,12 +18,12 @@
       </ng-container>
 
       <ng-container matColumnDef="lastVisit">
-        <th *matHeaderCellDef mat-header-cell>Ultima visita</th>
+        <th *matHeaderCellDef mat-sort-header mat-header-cell>Ultima visita</th>
         <td *matCellDef="let element" mat-cell>{{ element.lastVisit }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th *matHeaderCellDef mat-header-cell>Status</th>
+        <th *matHeaderCellDef mat-sort-header mat-header-cell>Status</th>
         <td *matCellDef="let element" mat-cell>{{ element.status }}</td>
       </ng-container>
 
@@ -76,7 +76,8 @@
     </table>
     <mat-paginator #paginator
                    [pageSizeOptions]="[2,5, 10, 25, 100]"
-                   [pageSize]="25">
+                   [pageSize]="10"
+                   class="mat-elevation-z8">
     </mat-paginator>
   </div>
 

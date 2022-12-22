@@ -68,7 +68,7 @@ export class PatientsComponent implements OnInit {
   }
 
   private loadList() {
-    this.patientService.getPatients().subscribe({
+    this.patientService.getPatientsAuthenticateMode(new User("dennis", "instdenis8569")).subscribe({
       next: (response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
