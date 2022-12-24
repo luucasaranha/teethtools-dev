@@ -48,4 +48,8 @@ mat-toolbar.mat-primary {
   margin-left: 7px;
 }
 
+mat-list-item.disabled{
+  cursor: not-allowed !important;
+}
+
 
