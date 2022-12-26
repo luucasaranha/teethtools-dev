@@ -49,7 +49,7 @@ export class PatientsComponent implements OnInit {
 
   parseDate(date: string) {
     let formattedDate = (moment(date)).format('DD-MM-YYYY')
-    if(formattedDate === this.invalidDate) {
+    if (formattedDate === this.invalidDate) {
       console.log("this is not a date: " + date)
     } else {
       console.log(formattedDate)
@@ -57,36 +57,36 @@ export class PatientsComponent implements OnInit {
   }
 
   sortData() {
-    let sortFuction: any = 
+    let sortFuction: any =
       (items: Patient[], sort: MatSort): Patient[] => {
-        if(!sort.active || sort.direction === '' ) {
+        if (!sort.active || sort.direction === '') {
           return items
         }
         return items.sort((a: Patient, b: Patient) => {
           let comparatorResult = 0;
           switch (sort.active) {
-              case 'lastVisit':
+            case 'lastVisit':
               this.parseDate(a.lastVisit)
               comparatorResult = a.lastVisit.localeCompare(b.lastVisit);
               break;
-    
+
             case 'status':
-             comparatorResult = a.status.localeCompare(b.status);
-             break;
-       
+              comparatorResult = a.status.localeCompare(b.status);
+              break;
+
             default:
               comparatorResult = a.name.localeCompare(b.name);
               break;
           }
           return comparatorResult * (sort.direction == 'asc' ? 1 : -1);
-         });
-       };
-       return sortFuction
+        });
+      };
+    return sortFuction
   }
 
   ngAfterViewInit() {
-    
-   }
+
+  }
 
   public onAdd() {
     this.navigateToCadastroPage()
