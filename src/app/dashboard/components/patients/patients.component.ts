@@ -7,7 +7,7 @@ import {User} from "../../model/user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {response} from "express";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-patients',
@@ -45,6 +45,49 @@ export class PatientsComponent implements OnInit {
     this.dataSource.filter = $event.target.value;
   }
 
+  private invalidDate: string = 'Invalid date';
+
+  parseDate(date: string) {
+    let formattedDate = (moment(date)).format('DD-MM-YYYY')
+    if(formattedDate === this.invalidDate) {
+      console.log("this is not a date: " + date)
+    } else {
+      console.log(formattedDate)
+    }
+  }
+
+  sortData() {
+    let sortFuction: any = 
+      (items: Patient[], sort: MatSort): Patient[] => {
+        if(!sort.active || sort.direction === '' ) {
+          return items
+        }
+        return items.sort((a: Patient, b: Patient) => {
+          let comparatorResult = 0;
+          switch (sort.active) {
+              case 'lastVisit':
+              this.parseDate(a.lastVisit)
+              comparatorResult = a.lastVisit.localeCompare(b.lastVisit);
+              break;
+    
+            case 'status':
+             comparatorResult = a.status.localeCompare(b.status);
+             break;
+       
+            default:
+              comparatorResult = a.name.localeCompare(b.name);
+              break;
+          }
+          return comparatorResult * (sort.direction == 'asc' ? 1 : -1);
+         });
+       };
+       return sortFuction
+  }
+
+  ngAfterViewInit() {
+    
+   }
+
   public onAdd() {
     this.navigateToCadastroPage()
   }
@@ -73,6 +116,7 @@ export class PatientsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.matSort;
+        this.dataSource.sortData = this.sortData();
       },
       error: (error) => {
         alert("Ocorreu um erro, tente novamente mais tarde")
