@@ -17,6 +17,7 @@
               <input
                 matInput
                 placeholder="Data de nascimento (dd/mm/aaaa)"
+                mask="00/00/0000"
                 formControlName="birthDate"
               />
             </mat-form-field>
@@ -34,6 +35,7 @@
         <mat-radio-group class="item" formControlName="gender">
           <mat-radio-button value="M">Masculino</mat-radio-button>
           <mat-radio-button value="F">Feminino</mat-radio-button>
+          <mat-radio-button value="Nao declarado">Não declarado</mat-radio-button>
         </mat-radio-group>
       </div>
 
@@ -51,7 +53,7 @@
           </td>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="CEP" formControlName="cep"/>
+              <input matInput placeholder="CEP" formControlName="cep" mask="00000-000"/>
             </mat-form-field>
           </td>
           <td>
@@ -92,6 +94,16 @@
           <td>
             <mat-form-field class="full-width">
               <input matInput placeholder="Facebook" formControlName="facebook"/>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Telefone" formControlName="number" mask="(00) 00000-0000"/>
             </mat-form-field>
           </td>
         </tr>
@@ -187,15 +199,15 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Valor Investido" formControlName="investedValue"
-               (input)="formatCurrencyOnKeyPress('investedValue')"
-               (click)="formatCurrencyOnKeyPress('investedValue')"/>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
         <input matInput placeholder="Valor em aberto" formControlName="openValue"
                (input)="formatCurrencyOnKeyPress('openValue')"
                (click)="formatCurrencyOnKeyPress('openValue')"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Valor total do tratamento" formControlName="investedValue"
+               (input)="formatCurrencyOnKeyPress('investedValue')"
+               (click)="formatCurrencyOnKeyPress('investedValue')"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
