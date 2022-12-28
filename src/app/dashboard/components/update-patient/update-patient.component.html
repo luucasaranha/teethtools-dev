@@ -230,19 +230,19 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Valor Investido</mat-label>
-        <input (click)="formatCurrencyOnKeyPress('investedValue')" (input)="formatCurrencyOnKeyPress('investedValue')"
-               formControlName="investedValue"
-               matInput
-               placeholder="Valor Investido"/>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
         <mat-label>Valor em aberto</mat-label>
         <input (click)="formatCurrencyOnKeyPress('openValue')" (input)="formatCurrencyOnKeyPress('openValue')"
                formControlName="openValue"
                matInput
                placeholder="Valor em aberto"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Valor total do tratamento</mat-label>
+        <input (click)="formatCurrencyOnKeyPress('investedValue')" (input)="formatCurrencyOnKeyPress('investedValue')"
+               formControlName="investedValue"
+               matInput
+               placeholder="Valor Investido"/>
       </mat-form-field>
 
       <mat-card-actions class="center-button">
