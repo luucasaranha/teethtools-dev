@@ -20,6 +20,7 @@
               <mat-label>Última visita</mat-label>
               <input formControlName="lastVisit"
                      matInput
+                     mask="00/00/0000"
                      placeholder="Ultima visita">
             </mat-form-field>
           </td>
@@ -110,24 +111,17 @@
               <input formControlName="number" mask="(00) 00000-0000" matInput placeholder="Telefone" />
             </mat-form-field>
           </td>
+
           <td>
             <mat-form-field class="full-width">
               <mat-label>Whatsapp</mat-label>
-              <input formControlName="whatsapp" mask="(00) 00000-0000" matInput placeholder="Whatsapp" />
+              <mat-select formControlName="whatsapp">
+                <mat-option value="Sim">Sim</mat-option>
+                <mat-option value="Nao">Não</mat-option>
+              </mat-select>
             </mat-form-field>
           </td>
-          <td>
-            <mat-form-field class="full-width">
-              <mat-label>Instagram</mat-label>
-              <input formControlName="instagram" matInput placeholder="Instagram"/>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="full-width">
-              <mat-label>Facebook</mat-label>
-              <input formControlName="facebook" matInput placeholder="Facebook"/>
-            </mat-form-field>
-          </td>
+
         </tr>
       </table>
 
