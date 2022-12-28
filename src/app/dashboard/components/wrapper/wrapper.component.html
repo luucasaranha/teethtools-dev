@@ -11,7 +11,7 @@
         <mat-icon mat-list-icon >menu</mat-icon>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="'home'" disabled="true">
+      <mat-list-item [routerLink]="" disabled="true" class="disabled">
         <mat-icon mat-list-icon>home</mat-icon>
         <span [@menuAnimation]="state" class="menu-item">Página inicial</span>
       </mat-list-item>
@@ -34,7 +34,7 @@
             <span [@menuAnimation]="state" class="menu-item">Cadastrar</span>
           </mat-list-item>
 
-          <mat-list-item [routerLink]="'home'" disabled="true">
+          <mat-list-item [routerLink]="" disabled="true" class="disabled">
             <mat-icon>list</mat-icon>
             <span [@menuAnimation]="state" class="menu-item">Ficha clínica</span>
           </mat-list-item>
