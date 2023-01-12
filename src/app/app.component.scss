@@ -1,0 +1,14 @@
+.logo-size {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+mat-toolbar.mat-primary {
+  background: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

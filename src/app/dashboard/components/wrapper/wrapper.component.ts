@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {hideAnimation, menuAnimation} from "../../animation/animations";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-wrapper',
@@ -17,7 +18,7 @@ export class WrapperComponent {
   isShowing = false;
   showSubSubMenu: boolean = false;
 
-  constructor() {}
+  constructor(public authService: AuthenticationService) {}
 
   mouseenter() {
     if (!this.isExpanded) {

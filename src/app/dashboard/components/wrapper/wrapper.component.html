@@ -1,11 +1,7 @@
-<mat-toolbar color="primary">
-  <img src="assets/img/logo.jpg" class="logo-size">
-</mat-toolbar>
-
 <mat-sidenav-container autosize>
   <mat-sidenav #sidenav mode="side" [opened]="true" [disableClose]="true">
 
-    <mat-nav-list>
+    <mat-nav-list *ngIf="authService.currentUser$ | async as user">
 
       <mat-list-item (click)="toggleState()">
         <mat-icon mat-list-icon >menu</mat-icon>

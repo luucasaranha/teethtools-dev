@@ -10,7 +10,11 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {getRemoteConfig, provideRemoteConfig} from '@angular/fire/remote-config';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
-import {SystemUnavailableComponent} from './system-unavailable/system-unavailable.component'
+import {SystemUnavailableComponent} from './system-unavailable/system-unavailable.component';
+import { provideAuth,getAuth } from '@angular/fire/auth'
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import {SystemUnavailableComponent} from './system-unavailable/system-unavailabl
     provideRemoteConfig(() => getRemoteConfig()),
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
-    })
+    }),
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]
