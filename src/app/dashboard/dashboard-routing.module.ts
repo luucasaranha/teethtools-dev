@@ -7,10 +7,10 @@ import {PatientsComponent} from './components/patients/patients.component';
 import {SystemUnavailableComponent} from "../system-unavailable/system-unavailable.component";
 import {UpdatePatientComponent} from "./components/update-patient/update-patient.component";
 import {LoginComponent} from "./components/login/login.component";
-import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo} from "@angular/fire/auth-guard";
+import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo, AuthGuard} from "@angular/fire/auth-guard";
 
-const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
-const redirectToHome() = () => redirectLoggedInTo(['home']);
+// const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
+// const redirectToHome() = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   {
@@ -20,32 +20,32 @@ const routes: Routes = [
       {
         path: 'cadastro',
         component: CadastroComponent,
-        ...canActivate(redirectToLogin)
+        canActivate: [AuthGuard]
       },
       {
         path: 'home',
         component: HomeComponent,
-        ...canActivate(redirectToLogin)
+        canActivate: [AuthGuard]
       },
       {
         path: 'patients',
         component: PatientsComponent,
-        ...canActivate(redirectToLogin)
+        canActivate: [AuthGuard]
       },
       {
         path: 'system-unavailable',
         component: SystemUnavailableComponent,
-        ...canActivate(redirectToLogin)
+        canActivate: [AuthGuard]
       },
       {
         path: 'update-patient',
         component: UpdatePatientComponent,
-        ...canActivate(redirectToLogin)
+        canActivate: [AuthGuard]
       },
       {
         path: 'login',
         component: LoginComponent,
-        ...canActivate(redirectToHome)
+        // canActivate: [AuthGuard]
       }
     ],
   },

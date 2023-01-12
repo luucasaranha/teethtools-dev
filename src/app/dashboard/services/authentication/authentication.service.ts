@@ -10,6 +10,8 @@ export class AuthenticationService {
 
   currentUser$ = authState(this.auth);
 
+
+
   constructor(private auth: Auth) { }
 
   login(username: string, password: string) {
@@ -20,8 +22,8 @@ export class AuthenticationService {
     return from(this.auth.signOut())
   }
 
-  generateHash(user: User): string {
-    return btoa(user.username + ":" + user.password)
+  generateHash(email: string, password: string) {
+    return btoa(email + ":" + password)
   }
 
 
