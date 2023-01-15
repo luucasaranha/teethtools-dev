@@ -5,7 +5,12 @@
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Procurar paciente">
       </mat-form-field>
     </div>
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+
+    <div *ngIf="loading">
+      <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort *ngIf="!loading">
 
       <ng-container matColumnDef="name">
         <th *matHeaderCellDef mat-header-cell>Nome</th>
@@ -67,6 +72,7 @@
             <button (click)="onDelete(element)" mat-menu-item>Apagar paciente</button>
           </mat-menu>
         </td>
+
       </ng-container>
 
 
@@ -81,6 +87,3 @@
     </mat-paginator>
   </div>
 
-<ng-template #loading>
-  <mat-spinner color="accent" diameter="64"></mat-spinner>
-</ng-template>
