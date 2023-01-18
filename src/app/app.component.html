@@ -2,7 +2,6 @@
   <img src="assets/img/logo.jpg" class="logo-size">
   <span class="spacer"></span>
 
-
   <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
     <button mat-button (click)="logout()">
       <mat-icon>login</mat-icon>
@@ -18,5 +17,4 @@
   </ng-template>
 
 </mat-toolbar>
-
 <router-outlet></router-outlet>

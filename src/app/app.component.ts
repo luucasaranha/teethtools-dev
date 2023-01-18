@@ -8,9 +8,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(public authService: AuthenticationService,
-              private router: Router) {
-  }
+
+  constructor(
+    public authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.router.navigate(['/login'])
