@@ -6,8 +6,11 @@ import {AuthenticationService} from "../authentication/authentication.service";
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate{
-  constructor(public authService: AuthenticationService,
-              public router: Router) { }
+
+  constructor(
+    public authService: AuthenticationService,
+    public router: Router
+  ) { }
 
   canActivate(): boolean {
     if (!this.authService.currentUser$) {
