@@ -12,11 +12,9 @@ export class AppComponent {
               private router: Router) {
   }
 
-
   logout() {
     this.authService.logout().subscribe(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['login']);
     });
   }
-
 }
