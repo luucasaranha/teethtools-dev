@@ -5,16 +5,17 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {getRemoteConfig, provideRemoteConfig} from '@angular/fire/remote-config';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {SystemUnavailableComponent} from './system-unavailable/system-unavailable.component';
-import { provideAuth,getAuth } from '@angular/fire/auth'
+import {provideAuth, getAuth} from '@angular/fire/auth'
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
+import {LoadingInterceptorService} from "./dashboard/services/interceptor/loading-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -34,10 +35,19 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
+export class AppModule {
+}
+
+export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;

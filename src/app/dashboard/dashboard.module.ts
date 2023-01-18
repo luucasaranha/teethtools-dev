@@ -26,6 +26,7 @@ import { UpdatePatientComponent } from './components/update-patient/update-patie
 import { LoginComponent } from './components/login/login.component';
 import {NgxMaskModule} from "ngx-mask";
 import {MatExpansionModule} from "@angular/material/expansion";
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     PatientsComponent,
     UpdatePatientComponent,
     LoginComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,

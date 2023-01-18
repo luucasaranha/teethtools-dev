@@ -1,16 +1,12 @@
   <h1>PACIENTES</h1>
-  <div class="container">
+  <div class="container" *ngIf="loaderService.loading$ | async">
     <div class="search-container">
       <mat-form-field appearance="fill">
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Procurar paciente">
       </mat-form-field>
     </div>
 
-    <div *ngIf="loading">
-      <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
-    </div>
-
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort *ngIf="!loading">
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
 
       <ng-container matColumnDef="name">
         <th *matHeaderCellDef mat-header-cell>Nome</th>
