@@ -5,7 +5,6 @@ import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 
-
 @Component({
   selector: 'app-update-patient',
   templateUrl: './update-patient.component.html',
@@ -15,10 +14,8 @@ export class UpdatePatientComponent implements OnInit {
 
   public form: FormGroup
 
-
   private id: string = ''
   private params: any
-  private rawObject: any | undefined
 
   constructor(
     private updateService: UpdatePatientService,
@@ -60,7 +57,6 @@ export class UpdatePatientComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.params = params
-      console.log(params)
       this.id = params['id']
       this.form = this.formBuilder.group({
         id: [this.params['id']],
@@ -94,8 +90,6 @@ export class UpdatePatientComponent implements OnInit {
       });
 
     })
-
-
   }
 
   ngOnInit() {
@@ -122,9 +116,9 @@ export class UpdatePatientComponent implements OnInit {
     if (!this.validateForm()) {
       return
     }
+
     this.updateService.updatePatient(this.id, this.form.value).subscribe({
-      next: response => {
-        console.log(JSON.stringify(response))
+      next: () => {
         alert("Paciente editado com sucesso.")
         this.router.navigate(['patients'])
       },
@@ -150,7 +144,6 @@ export class UpdatePatientComponent implements OnInit {
       this.form.controls[elementName].setValue(realValue)
       return
     }
-
 
     let formattedValue = realValue.replace(/\D/g, '');
     formattedValue = (formattedValue / 100).toFixed(2) + '';
