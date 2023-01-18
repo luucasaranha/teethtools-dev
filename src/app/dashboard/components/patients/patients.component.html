@@ -1,8 +1,9 @@
-  <h1>PACIENTES</h1>
+<h1>Pacientes</h1>
+
   <div class="container" *ngIf="loaderService.loading$ | async">
     <div class="search-container">
       <mat-form-field appearance="fill">
-        <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Procurar paciente">
+        <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Pesquisar">
       </mat-form-field>
     </div>
 
