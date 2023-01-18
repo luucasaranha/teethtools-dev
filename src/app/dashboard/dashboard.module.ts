@@ -22,45 +22,50 @@ import {PatientsComponent} from './components/patients/patients.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from "@angular/material/menu";
-import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
-import { LoginComponent } from './components/login/login.component';
+import {UpdatePatientComponent} from './components/update-patient/update-patient.component';
+import {LoginComponent} from './components/login/login.component';
 import {NgxMaskModule} from "ngx-mask";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {LoadingComponent} from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [
-    WrapperComponent,
-    CadastroComponent,
-    HomeComponent,
-    PatientsComponent,
-    UpdatePatientComponent,
-    LoginComponent,
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    HttpClientModule,
+    declarations: [
+        WrapperComponent,
+        CadastroComponent,
+        HomeComponent,
+        PatientsComponent,
+        UpdatePatientComponent,
+        LoginComponent,
+        LoadingComponent,
+    ],
+    exports: [
+        LoadingComponent
+    ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        HttpClientModule,
 
-    // Material
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatSortModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatMenuModule,
-    FormsModule,
-    NgxMaskModule,
-    MatExpansionModule
-  ]
+        // Material
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatCardModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatSortModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatMenuModule,
+        FormsModule,
+        NgxMaskModule,
+        MatExpansionModule
+    ]
 })
 export class DashboardModule {}

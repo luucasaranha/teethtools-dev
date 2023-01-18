@@ -7,6 +7,10 @@ import {PatientsComponent} from './components/patients/patients.component';
 import {SystemUnavailableComponent} from "../system-unavailable/system-unavailable.component";
 import {UpdatePatientComponent} from "./components/update-patient/update-patient.component";
 import {LoginComponent} from "./components/login/login.component";
+import {AuthGuard} from "@angular/fire/auth-guard";
+
+// const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
+// const redirectToHome() = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   {
@@ -16,26 +20,32 @@ const routes: Routes = [
       {
         path: 'cadastro',
         component: CadastroComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'patients',
         component: PatientsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'system-unavailable',
-        component: SystemUnavailableComponent
+        component: SystemUnavailableComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'update-patient',
-        component: UpdatePatientComponent
+        component: UpdatePatientComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        // canActivate: [AuthGuard]
       }
     ],
   },

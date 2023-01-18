@@ -7,7 +7,7 @@ import {User} from "../../model/user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {response} from "express";
+import {LoadingService} from "../../services/loading-service/loading.service";
 
 @Component({
   selector: 'app-patients',
@@ -26,6 +26,7 @@ export class PatientsComponent implements OnInit {
   ];
 
   dataSource!: MatTableDataSource<Patient>;
+  loading: boolean = true;
 
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
@@ -34,6 +35,7 @@ export class PatientsComponent implements OnInit {
     private patientService: PatientsService,
     private deletePatientService: DeletePatientService,
     private router: Router,
+    public loaderService: LoadingService
   ) {
   }
 
@@ -73,6 +75,7 @@ export class PatientsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.matSort;
+        this.loading = false;
       },
       error: (error) => {
         alert("Ocorreu um erro, tente novamente mais tarde")

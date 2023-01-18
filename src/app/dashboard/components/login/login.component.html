@@ -1,19 +1,28 @@
-<div>
-  <mat-card class="mat-elevation-z8">
-    <form [formGroup]="formData" class="margin-form">
+<div class="form-container mat-elevation-z5">
+    <h1>Login</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
       <mat-form-field class="full-width">
         <mat-label>Usuário</mat-label>
-        <input autofocus formControlName="userName" matInput placeholder="Usuário" required type="text">
+        <input autofocus formControlName="email" matInput placeholder="Usuário" required type="text">
+        <mat-error *ngIf="email?.errors?.['required']">
+          O email é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          O formato do email está incorreto.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Senha</mat-label>
         <input formControlName="password" matInput placeholder="Senha" required type="password">
+        <mat-error *ngIf="password?.errors?.['required']">
+          A senha é obrigatória.
+        </mat-error>
       </mat-form-field>
-      <mat-card-actions class="center-button">
-        <button (click)="onClickSubmit()" mat-raised-button>Login</button>
-      </mat-card-actions>
+      <div class="center margin-top">
+        <button mat-raised-button color="primary">Login</button>
+      </div>
     </form>
-  </mat-card>
 </div>

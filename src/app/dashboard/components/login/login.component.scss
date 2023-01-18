@@ -1,13 +1,30 @@
-.margin-form {
-  margin: 12px;
+.form-container {
+  display: block;
+  max-width: 300px;
+  margin: auto;
+
+  background: white;
+  padding: 48px;
+  border-radius: 16px;
 }
 
-.full-width {
+.form-container mat-form-field {
   width: 100%;
 }
 
-.center-button {
+.center {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
