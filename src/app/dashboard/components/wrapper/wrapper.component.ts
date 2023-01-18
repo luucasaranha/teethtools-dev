@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
 import {hideAnimation, menuAnimation} from "../../animation/animations";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {Subject} from "rxjs";

@@ -11,7 +11,7 @@ import {environment} from '../environments/environment';
 import {getRemoteConfig, provideRemoteConfig} from '@angular/fire/remote-config';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {SystemUnavailableComponent} from './system-unavailable/system-unavailable.component';
-import {provideAuth, getAuth} from '@angular/fire/auth'
+import {getAuth, provideAuth} from '@angular/fire/auth'
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";

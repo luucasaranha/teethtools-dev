@@ -7,7 +7,7 @@ import {PatientsComponent} from './components/patients/patients.component';
 import {SystemUnavailableComponent} from "../system-unavailable/system-unavailable.component";
 import {UpdatePatientComponent} from "./components/update-patient/update-patient.component";
 import {LoginComponent} from "./components/login/login.component";
-import {canActivate, redirectUnauthorizedTo, redirectLoggedInTo, AuthGuard} from "@angular/fire/auth-guard";
+import {AuthGuard} from "@angular/fire/auth-guard";
 
 // const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
 // const redirectToHome() = () => redirectLoggedInTo(['home']);

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-import {PatientsService} from "../../services/list-patient/patients.service";
-import {User} from "../../model/user";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 
 @Component({
@@ -47,16 +45,4 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // onClickSubmit() {
-  //   this.userName = this.formData.value['userName'];
-  //   this.password = this.formData.value['password'];
-  //
-  //   console.log("Login page: " + this.userName);
-  //   console.log("Login page: " + this.password);
-  //
-  //   this.service.getPatientsAuthenticateMode(new User(this.userName, this.password))
-  //     .subscribe( data => {
-  //       console.log("Is Login Success: " + data);
-  //     });
-  // }
 }

@@ -79,6 +79,7 @@
     </table>
     <mat-paginator #paginator
                    [pageSizeOptions]="[2,5, 10, 25, 100]"
+                   [length]="dataSource.data.length"
                    [pageSize]="10"
                    class="mat-elevation-z8">
     </mat-paginator>
