@@ -29,40 +29,43 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [
-    WrapperComponent,
-    CadastroComponent,
-    HomeComponent,
-    PatientsComponent,
-    UpdatePatientComponent,
-    LoginComponent,
-    LoadingComponent,
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    HttpClientModule,
+    declarations: [
+        WrapperComponent,
+        CadastroComponent,
+        HomeComponent,
+        PatientsComponent,
+        UpdatePatientComponent,
+        LoginComponent,
+        LoadingComponent,
+    ],
+    exports: [
+        LoadingComponent
+    ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        HttpClientModule,
 
-    // Material
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatSortModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatMenuModule,
-    FormsModule,
-    NgxMaskModule,
-    MatExpansionModule
-  ]
+        // Material
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatCardModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatSortModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatMenuModule,
+        FormsModule,
+        NgxMaskModule,
+        MatExpansionModule
+    ]
 })
 export class DashboardModule {}

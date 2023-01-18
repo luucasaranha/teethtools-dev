@@ -12,7 +12,7 @@ export class LoadingComponent implements AfterViewInit, OnDestroy {
   loadingSubscription!: Subscription;
 
   constructor(
-    private loadingScreenService: LoadingService,
+    public loadingScreenService: LoadingService,
     private _elmRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef
   ) {

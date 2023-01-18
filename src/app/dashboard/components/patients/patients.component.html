@@ -1,6 +1,6 @@
-<h1>Pacientes</h1>
 
-  <div class="container" *ngIf="loaderService.loading$ | async">
+  <div class="container" *ngIf="!loading">
+    <h1>Pacientes</h1>
     <div class="search-container">
       <mat-form-field appearance="fill">
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Pesquisar">

@@ -16,6 +16,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {LoadingInterceptorService} from "./dashboard/services/interceptor/loading-interceptor.service";
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {LoadingInterceptorService} from "./dashboard/services/interceptor/loadin
     MatToolbarModule,
     MatButtonModule,
     provideAuth(() => getAuth()),
-    HttpClientModule
+    HttpClientModule,
+    DashboardModule
   ],
   providers: [
     {
