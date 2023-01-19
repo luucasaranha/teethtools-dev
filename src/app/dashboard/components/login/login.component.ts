@@ -35,14 +35,27 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if(!this.loginForm.valid) {
+    if (!this.loginForm.valid) {
       return;
     }
 
     const {email, password} = this.loginForm.value;
-    this.authService.login(email!, password!).subscribe(() => {
-      this.router.navigate(['/patients']);
-    })
+
+    this.authService.login(email!, password!)
+      .subscribe({
+        complete: () => {
+          this.router.navigate(['/patients']);
+        },
+        error: () => {
+          alert("credenciais inválidas")
+          this.clearForm()
+        }
+      })
+  }
+
+  clearForm() {
+    this.loginForm.get('email')?.setValue("")
+    this.loginForm.get('password')?.setValue("")
   }
 
 }
