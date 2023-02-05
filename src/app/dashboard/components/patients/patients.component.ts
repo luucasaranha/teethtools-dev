@@ -25,11 +25,26 @@ export class PatientsComponent implements OnInit {
     'actions',
   ];
 
+  private paginator!: MatPaginator;
+  private sort!: MatSort;
+
   dataSource!: MatTableDataSource<Patient>;
   loading: boolean = true;
 
-  @ViewChild('paginator') paginator!: MatPaginator;
-  @ViewChild(MatSort) matSort!: MatSort;
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   constructor(
     private patientService: PatientsService,

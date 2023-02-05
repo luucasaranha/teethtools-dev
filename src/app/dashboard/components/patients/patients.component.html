@@ -1,8 +1,8 @@
 
   <div class="container" *ngIf="!loading">
     <h1>Pacientes</h1>
-    <div class="search-container">
-      <mat-form-field appearance="fill">
+    <div>
+      <mat-form-field appearance="outline" class="search-container" color="accent">
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Pesquisar">
       </mat-form-field>
     </div>
@@ -15,7 +15,7 @@
       </ng-container>
 
       <ng-container matColumnDef="gender">
-        <th *matHeaderCellDef mat-header-cell>Gênero</th>
+        <th *matHeaderCellDef mat-sort-header mat-header-cell>Gênero</th>
         <td *matCellDef="let element" mat-cell>{{ element.gender }}</td>
       </ng-container>
 
@@ -25,7 +25,7 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th *matHeaderCellDef mat-header-cell>Status</th>
+        <th *matHeaderCellDef mat-sort-header mat-header-cell>Status</th>
         <td *matCellDef="let element" mat-cell>{{ element.status }}</td>
       </ng-container>
 
@@ -77,9 +77,9 @@
       <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
 
     </table>
-    <mat-paginator #paginator
-                   [pageSizeOptions]="[2,5, 10, 25, 100]"
+    <mat-paginator
                    [length]="dataSource.data.length"
+                   [pageSizeOptions]="[2,5, 10, 25, 100]"
                    [pageSize]="10"
                    class="mat-elevation-z8">
     </mat-paginator>
