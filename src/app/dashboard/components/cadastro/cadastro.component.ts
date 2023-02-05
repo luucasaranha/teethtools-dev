@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {CreatePatientServiceService} from "../../services/create-patient/create-patient-service.service";
+import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 
@@ -15,7 +15,7 @@ export class CadastroComponent implements OnInit {
   private zeroValue: string = "R$ 0,00";
 
   constructor(
-    private cadastroService: CreatePatientServiceService,
+    private cadastroService: CreatePatientService,
     private formBuilder: FormBuilder,
     private location: Location,
   ) {
