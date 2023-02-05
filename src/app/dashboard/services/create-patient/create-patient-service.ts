@@ -5,7 +5,7 @@ import {User} from "../../model/user";
 @Injectable({
   providedIn: 'root'
 })
-export class CreatePatientServiceService {
+export class CreatePatientService {
 
   private readonly devBaseUrl = 'https://odonto-api-dev.herokuapp.com/api'
   private readonly devInsertUrl = this.devBaseUrl + '/v1/sheet-patients/insert';
