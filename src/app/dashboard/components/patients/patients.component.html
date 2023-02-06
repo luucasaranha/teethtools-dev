@@ -2,7 +2,7 @@
   <div class="container" *ngIf="!loading">
     <h1>Pacientes</h1>
     <div>
-      <mat-form-field appearance="outline" class="search-container" color="accent">
+      <mat-form-field appearance="fill" class="search-container" color="accent">
         <input (keyup)="filterData($event)" autocomplete="off" matInput placeholder="Pesquisar">
       </mat-form-field>
     </div>
