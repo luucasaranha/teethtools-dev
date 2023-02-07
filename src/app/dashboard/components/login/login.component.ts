@@ -54,8 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   clearForm() {
-    this.loginForm.get('email')?.setValue("")
-    this.loginForm.get('password')?.setValue("")
+    this.loginForm.reset()
   }
 
 }
