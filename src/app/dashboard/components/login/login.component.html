@@ -6,10 +6,10 @@
       <mat-form-field class="full-width">
         <mat-label>Usuário</mat-label>
         <input autofocus formControlName="email" matInput placeholder="Usuário" required type="text">
-        <mat-error *ngIf="email?.errors?.['required']">
+        <mat-error *ngIf="email?.errors?.['required'] && email?.touched">
           O email é obrigatório.
         </mat-error>
-        <mat-error *ngIf="email?.errors?.['email']">
+        <mat-error *ngIf="email?.errors?.['email'] && email?.touched " >
           O formato do email está incorreto.
         </mat-error>
       </mat-form-field>
@@ -17,7 +17,7 @@
       <mat-form-field class="full-width">
         <mat-label>Senha</mat-label>
         <input formControlName="password" matInput placeholder="Senha" required type="password">
-        <mat-error *ngIf="password?.errors?.['required']">
+        <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
           A senha é obrigatória.
         </mat-error>
       </mat-form-field>
