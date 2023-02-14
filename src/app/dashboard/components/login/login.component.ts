@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email!, password!)
       .subscribe({
         complete: () => {
-          localStorage.setItem("loggedIn", "true")
+          sessionStorage.setItem("loggedIn", "true")
           this.router.navigate(['/patients']);
         },
         error: () => {

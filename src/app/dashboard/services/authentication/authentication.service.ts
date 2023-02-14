@@ -17,7 +17,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.setItem("loggedIn", "false")
+    sessionStorage.clear()
     return from(this.auth.signOut())
   }
 
