@@ -7,37 +7,16 @@
         <mat-icon mat-list-icon >menu</mat-icon>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="" disabled="true" class="disabled">
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span [@menuAnimation]="state" class="menu-item">Página inicial</span>
+      <mat-list-item [routerLink]="'cadastro'">
+        <mat-icon>group_add</mat-icon>
+        <span [@menuAnimation]="state" class="menu-item">Cadastrar</span>
       </mat-list-item>
 
-      <mat-expansion-panel>
+      <mat-list-item [routerLink]="'patients'">
+        <mat-icon>group</mat-icon>
+        <span [@menuAnimation]="state" class="menu-item">Listar</span>
+      </mat-list-item>
 
-        <mat-expansion-panel-header class="header">
-          <mat-icon mat-list-icon>group</mat-icon>
-          <span [@menuAnimation]="state" class="header-text">Pacientes</span>
-        </mat-expansion-panel-header>
-
-        <mat-nav-list class="submenu">
-          <mat-list-item [routerLink]="'patients'">
-            <mat-icon mat-list-icon>group</mat-icon>
-            <span [@menuAnimation]="state" class="menu-item">Listar</span>
-          </mat-list-item>
-
-          <mat-list-item [routerLink]="'cadastro'">
-            <mat-icon>group_add</mat-icon>
-            <span [@menuAnimation]="state" class="menu-item">Cadastrar</span>
-          </mat-list-item>
-
-          <mat-list-item [routerLink]="" disabled="true" class="disabled">
-            <mat-icon>list</mat-icon>
-            <span [@menuAnimation]="state" class="menu-item">Ficha clínica</span>
-          </mat-list-item>
-
-        </mat-nav-list>
-
-      </mat-expansion-panel>
 
     </mat-nav-list>
   </mat-sidenav>
