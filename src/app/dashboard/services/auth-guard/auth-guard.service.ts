@@ -7,14 +7,19 @@ import {AuthenticationService} from "../authentication/authentication.service";
 })
 export class AuthGuardService implements CanActivate{
 
+  private readonly LOGGED_IN_KEY: string ="loggedIn";
+
   constructor(
-    public authService: AuthenticationService,
     private route:ActivatedRoute,
     private router: Router
   ) { }
 
   canActivate(): boolean {
-      if (sessionStorage.getItem("loggedIn") === "false") {
+      if (
+        sessionStorage.getItem(this.LOGGED_IN_KEY) === null ||
+        sessionStorage.getItem(this.LOGGED_IN_KEY) === "false"
+      ) {
+        console.log("nao esta logado")
         this.router.navigate(['login'])
         return false
       }
