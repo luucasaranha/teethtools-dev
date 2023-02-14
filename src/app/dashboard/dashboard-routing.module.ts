@@ -8,6 +8,7 @@ import {SystemUnavailableComponent} from "../system-unavailable/system-unavailab
 import {UpdatePatientComponent} from "./components/update-patient/update-patient.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuard} from "@angular/fire/auth-guard";
+import {AuthGuardService} from "./services/auth-guard/auth-guard.service";
 
 // const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
 // const redirectToHome() = () => redirectLoggedInTo(['home']);
@@ -20,38 +21,38 @@ const routes: Routes = [
       {
         path: 'cadastro',
         component: CadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService],
       },
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService],
       },
       {
         path: 'patients',
         component: PatientsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService],
       },
       {
         path: 'system-unavailable',
         component: SystemUnavailableComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'update-patient',
         component: UpdatePatientComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'login',
         component: LoginComponent,
-        // canActivate: [AuthGuard]
+        // canActivate: [AuthGuardService]
       }
     ],
   },
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: '/system-unavailable',
     pathMatch: 'full',
   }
 ];

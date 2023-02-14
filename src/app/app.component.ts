@@ -15,7 +15,9 @@ export class AppComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.router.navigate(['/login'])
+    if(localStorage.getItem("logged-in") === "false") {
+      this.router.navigate(['/login']);
+    }
   }
 
   logout() {
