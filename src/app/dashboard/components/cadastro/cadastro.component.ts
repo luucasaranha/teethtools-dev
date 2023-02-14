@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
+import {Route, Router, Routes} from "@angular/router";
 
 @Component({
   selector: 'app-cadastro',
@@ -18,38 +20,16 @@ export class CadastroComponent implements OnInit {
     private cadastroService: CreatePatientService,
     private formBuilder: FormBuilder,
     private location: Location,
+    private authService: AuthenticationService,
+    private router: Router
   ) {
-
-    this.form = this.formBuilder.group({
-      name: [null],
-      gender: [null],
-      age: [null],
-      birthDate: [null],
-      address: [null],
-      cep: [null],
-      district: [null],
-      city: [null],
-      state: [null],
-      origin: [null],
-      number: [null],
-      whatsapp: [null],
-      instagram: [null],
-      facebook: [null],
-      email: [null],
-      bestCommunicationChannel: [null],
-      status: [null],
-      criticity: [null],
-      speciality: [null],
-      proceeds: [null],
-      action: [null],
-      observations: [null],
-      financial: [null],
-      investedValue: [null],
-      openValue: [null],
-    });
+    this.form = this.getFormGroup();
   }
 
   ngOnInit(): void {
+    // if (localStorage.getItem("loggedIn") === "false") {
+    //   this.router.navigate(['/login'])
+    // }
   }
 
   validateForm(): boolean {
@@ -105,6 +85,36 @@ export class CadastroComponent implements OnInit {
     formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
     this.form.controls[elementName].setValue('R$ ' + formattedValue)
+  }
+
+  private getFormGroup() {
+    return this.formBuilder.group({
+      name: [null],
+      gender: [null],
+      age: [null],
+      birthDate: [null],
+      address: [null],
+      cep: [null],
+      district: [null],
+      city: [null],
+      state: [null],
+      origin: [null],
+      number: [null],
+      whatsapp: [null],
+      instagram: [null],
+      facebook: [null],
+      email: [null],
+      bestCommunicationChannel: [null],
+      status: [null],
+      criticity: [null],
+      speciality: [null],
+      proceeds: [null],
+      action: [null],
+      observations: [null],
+      financial: [null],
+      investedValue: [null],
+      openValue: [null],
+    });
   }
 
 }

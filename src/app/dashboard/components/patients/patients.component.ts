@@ -8,6 +8,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {LoadingService} from "../../services/loading-service/loading.service";
+import {AuthenticationService} from "../../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-patients',
@@ -31,6 +32,14 @@ export class PatientsComponent implements OnInit {
   dataSource!: MatTableDataSource<Patient>;
   loading: boolean = true;
 
+  constructor(
+    private patientService: PatientsService,
+    private deletePatientService: DeletePatientService,
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
+  }
+
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.setDataSourceAttributes();
@@ -41,21 +50,15 @@ export class PatientsComponent implements OnInit {
 
   }
 
-  setDataSourceAttributes() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  constructor(
-    private patientService: PatientsService,
-    private deletePatientService: DeletePatientService,
-    private router: Router,
-    public loaderService: LoadingService
-  ) {
-  }
-
   ngOnInit() {
     this.loadList()
+    // if (localStorage.getItem("loggedIn") === "false") {
+    //   console.log("nao tava logado")
+    //   this.router.navigate(['/login'])
+    // } else {
+    //   console.log("tava logado")
+    //   this.loadList()
+    // }
   }
 
   filterData($event: any) {
@@ -105,5 +108,10 @@ export class PatientsComponent implements OnInit {
 
   private navigateToUpdatePage(element: any) {
     this.router.navigate(['update-patient', element])
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

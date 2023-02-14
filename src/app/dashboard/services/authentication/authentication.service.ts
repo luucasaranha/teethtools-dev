@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Auth, authState, signInWithEmailAndPassword} from "@angular/fire/auth";
+import {Auth, authState, signInWithEmailAndPassword, user} from "@angular/fire/auth";
 import {from} from "rxjs";
 
 @Injectable({
@@ -7,7 +7,8 @@ import {from} from "rxjs";
 })
 export class AuthenticationService {
 
-  currentUser$ = authState(this.auth);
+  currentUser$ = user(this.auth);
+  isUserLoggedIn = false
 
   constructor(private auth: Auth) { }
 
@@ -16,6 +17,7 @@ export class AuthenticationService {
   }
 
   logout() {
+    localStorage.setItem("loggedIn", "false")
     return from(this.auth.signOut())
   }
 

@@ -26,11 +26,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  hasAnyError() {
-
-  }
-
-
   get email() {
     return this.loginForm.get('email');
   }
@@ -49,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email!, password!)
       .subscribe({
         complete: () => {
+          localStorage.setItem("loggedIn", "true")
           this.router.navigate(['/patients']);
         },
         error: () => {
