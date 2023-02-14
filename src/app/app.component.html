@@ -2,6 +2,10 @@
   <img src="assets/img/logo.jpg" class="logo-size">
   <span class="spacer"></span>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
+
   <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
     <button mat-button (click)="logout()">
       <mat-icon>login</mat-icon>
