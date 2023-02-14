@@ -52,13 +52,6 @@ export class PatientsComponent implements OnInit {
 
   ngOnInit() {
     this.loadList()
-    // if (localStorage.getItem("loggedIn") === "false") {
-    //   console.log("nao tava logado")
-    //   this.router.navigate(['/login'])
-    // } else {
-    //   console.log("tava logado")
-    //   this.loadList()
-    // }
   }
 
   filterData($event: any) {

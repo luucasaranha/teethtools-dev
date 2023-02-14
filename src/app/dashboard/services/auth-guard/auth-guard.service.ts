@@ -15,11 +15,9 @@ export class AuthGuardService implements CanActivate{
 
   canActivate(): boolean {
       if (localStorage.getItem("loggedIn") === "false") {
-        console.log("deslogado")
         this.router.navigate(['login'])
         return false
       }
-      console.log("logado")
       return true
   }
 }
