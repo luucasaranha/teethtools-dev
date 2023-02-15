@@ -1,6 +1,6 @@
 {
   "name": "crud",
-  "version": "1.5.6",
+  "version": "1.5.9",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",

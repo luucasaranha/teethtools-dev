@@ -1,20 +1,22 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRoute, CanActivate, Router} from "@angular/router";
-import {AuthenticationService} from "../authentication/authentication.service";
+import {CanActivate, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate{
 
+  private readonly LOGGED_IN_KEY: string ="loggedIn";
+
   constructor(
-    public authService: AuthenticationService,
-    private route:ActivatedRoute,
     private router: Router
   ) { }
 
   canActivate(): boolean {
-      if (localStorage.getItem("loggedIn") === "false") {
+      if (
+        sessionStorage.getItem(this.LOGGED_IN_KEY) === null ||
+        sessionStorage.getItem(this.LOGGED_IN_KEY) === "false"
+      ) {
         this.router.navigate(['login'])
         return false
       }

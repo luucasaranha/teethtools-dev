@@ -27,9 +27,6 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (localStorage.getItem("loggedIn") === "false") {
-    //   this.router.navigate(['/login'])
-    // }
   }
 
   validateForm(): boolean {
