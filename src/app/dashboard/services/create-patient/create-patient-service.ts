@@ -8,7 +8,7 @@ import {User} from "../../model/user";
 export class CreatePatientService {
 
   private readonly devBaseUrl = 'https://odonto-api-dev.herokuapp.com/api'
-  private readonly devInsertUrl = this.devBaseUrl + '/v1/sheet-patients/insert';
+  private readonly devInsertUrl = this.devBaseUrl + '/v1/patients/insert';
 
   constructor(private httpClient: HttpClient) { }
 
