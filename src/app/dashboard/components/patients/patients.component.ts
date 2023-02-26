@@ -9,6 +9,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {LoadingService} from "../../services/loading-service/loading.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ResponseError} from "../../model/error";
 
 @Component({
   selector: 'app-patients',
@@ -74,14 +76,15 @@ export class PatientsComponent implements OnInit {
           this.loadList()
         },
         error: err => {
-          alert("Ocorreu um erro ao deletar o paciente")
-          console.log(err)
+          const errorObj = (err as HttpErrorResponse).error
+          const parsedError = (JSON.parse(JSON.stringify(errorObj))) as ResponseError
+          alert(parsedError.errorMessage)
         }
       })
   }
 
   private loadList() {
-    this.patientService.getPatientsAuthenticateMode(new User("dennis", "instdenis8569")).subscribe({
+    this.patientService.retrievePatients().subscribe({
       next: (response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
