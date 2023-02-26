@@ -13,8 +13,11 @@ import {LoadingService} from "../../services/loading-service/loading.service";
 export class WrapperComponent {
   // isExpanded: boolean = true;
   state = 'opened';
+  isUserAuthenticated = sessionStorage.getItem("loggedIn") === "true"
+
 
   loading: Subject<boolean> = this.loaderService.loading$
+
 
   constructor(
     public authService: AuthenticationService,

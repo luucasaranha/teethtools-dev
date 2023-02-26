@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
 
+  isUserAuthenticated = sessionStorage.getItem("loggedIn") === "true"
+
   constructor(
     public authService: AuthenticationService,
     private router: Router
