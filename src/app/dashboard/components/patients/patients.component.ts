@@ -44,8 +44,8 @@ export class PatientsComponent implements OnInit {
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
-    this.setDataSourceAttributes();
   }
+
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();

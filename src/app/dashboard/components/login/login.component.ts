@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {User} from "../../model/user";
 
 @Component({
   selector: 'app-login',
@@ -49,6 +48,8 @@ export class LoginComponent implements OnInit {
           console.log(data)
           sessionStorage.setItem("loginHash", this.generateHash(email!, password!))
           sessionStorage.setItem("loggedIn", "true")
+          this.authService.isLoggedIn$.next(true)
+
           this.router.navigate(['/patients']);
         },
         error: () => {
