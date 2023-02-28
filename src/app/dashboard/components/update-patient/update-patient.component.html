@@ -62,6 +62,12 @@
         <tr>
           <td>
             <mat-form-field class="full-width">
+              <mat-label>CEP</mat-label>
+              <input formControlName="cep" mask="00000-000" matInput (input)="checkAddress()"/>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width">
               <mat-label>Endereço</mat-label>
               <input
                 formControlName="address"
@@ -69,12 +75,6 @@
                 matInput
                 placeholder="Endereço"
               />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="full-width">
-              <mat-label>CEP</mat-label>
-              <input formControlName="cep" mask="00000-000" matInput/>
             </mat-form-field>
           </td>
           <td>

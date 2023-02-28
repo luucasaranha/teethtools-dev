@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Form, FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {Route, Router, Routes} from "@angular/router";
+import {AddressService} from "../../services/address-service/address.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -14,14 +15,12 @@ import {Route, Router, Routes} from "@angular/router";
 export class CadastroComponent implements OnInit {
 
   public form: FormGroup;
-  private zeroValue: string = "R$ 0,00";
 
   constructor(
     private cadastroService: CreatePatientService,
     private formBuilder: FormBuilder,
     private location: Location,
-    private authService: AuthenticationService,
-    private router: Router
+    private addressService: AddressService,
   ) {
     this.form = this.getFormGroup();
   }
@@ -43,6 +42,24 @@ export class CadastroComponent implements OnInit {
     }
 
     return true;
+  }
+
+  checkAddress(){
+    const cep = this.form.get('cep').value;
+
+    if (cep != null && cep !== '') {
+      this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
+    }
+  }
+
+  populateForm(formData: any) {
+    this.form.patchValue({
+      address: formData.logradouro,
+      district: formData.bairro,
+      city: formData.localidade,
+      state: formData.uf
+
+    })
   }
 
   submitBtnClick() {
