@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AddressService} from "../../services/address-service/address.service";
 
 @Component({
   selector: 'app-update-patient',
@@ -23,6 +24,7 @@ export class UpdatePatientComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
+    private addressService: AddressService
   ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -110,6 +112,24 @@ export class UpdatePatientComponent implements OnInit {
     }
 
     return true;
+  }
+
+  checkAddress(){
+    const cep = this.form.get('cep').value;
+
+    if (cep != null && cep !== '') {
+      this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
+    }
+  }
+
+  populateForm(formData: any) {
+    this.form.patchValue({
+      address: formData.logradouro,
+      district: formData.bairro,
+      city: formData.localidade,
+      state: formData.uf
+
+    })
   }
 
   submitBtnClick() {
