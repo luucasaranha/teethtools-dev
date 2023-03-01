@@ -61,7 +61,7 @@
               "fileReplacements": [
                 {
                   "replace": "environment.ts",
-                  "with": "environment.local.ts"
+                  "with": "environment.dev.ts"
                 }
               ],
               "buildOptimizer": false,
