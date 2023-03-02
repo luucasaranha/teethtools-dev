@@ -8,7 +8,6 @@ import {environment} from "../../../../../environment";
 })
 export class DeletePatientService {
 
-  private readonly baseURL = 'https://odonto-api-dev.herokuapp.com/api';
   private readonly deleteURL = environment.baseUrl + '/patients/delete';
 
   constructor(private httpClient: HttpClient) { }
@@ -19,11 +18,8 @@ export class DeletePatientService {
         Authorization: 'Basic ' + sessionStorage.getItem("loginHash")
       });
 
-    // if(userAuthenticated()) {
-    //
-    // }
     return this.httpClient.delete(
-      this.deleteURL + '?id=' + patientId,
+      this.deleteURL + '?patientId=' + patientId,
       {headers: authorizationHeader}
     )
   }

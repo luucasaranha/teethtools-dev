@@ -19,7 +19,7 @@ export class UpdatePatientService {
       });
 
     return this.httpClient.put(
-      this.updateURL + '?id=' + id,
+      this.updateURL + '?patientId=' + id,
       patient, {
         headers: authorizationHeader
       }
