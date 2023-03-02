@@ -1,7 +1,7 @@
 <mat-sidenav-container autosize>
   <mat-sidenav #sidenav mode="side" [opened]="true" [disableClose]="true">
 
-    <mat-nav-list *ngIf="authService.currentUser$ | async as user">
+    <mat-nav-list *ngIf="isUserAuthenticated$ | async">
 
       <mat-list-item (click)="toggleState()">
         <mat-icon mat-list-icon >menu</mat-icon>

@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
 
+  isLoggedIn$ = this.authService.isLoggedIn$
+
   constructor(
     public authService: AuthenticationService,
     private router: Router
@@ -24,9 +26,9 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
+    this.router.navigate(['/login']);
+    this.isLoggedIn$.next(false);
+    sessionStorage.clear()
   }
 
 }

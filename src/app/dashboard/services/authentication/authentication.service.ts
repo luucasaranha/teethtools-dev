@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Auth, authState, signInWithEmailAndPassword, user} from "@angular/fire/auth";
-import {from} from "rxjs";
+import {BehaviorSubject, from} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {User} from "../../model/user";
+import {environment} from "../../../../../environment";
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +11,31 @@ import {from} from "rxjs";
 export class AuthenticationService {
 
   currentUser$ = user(this.auth);
-  isUserLoggedIn = false
+  isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private auth: Auth) { }
+  private readonly loginURL =  environment.baseUrl + '/login';
+
+  constructor(private auth: Auth, private httpClient: HttpClient) {}
 
   login(username: string, password: string) {
-    return from(signInWithEmailAndPassword(this.auth, username, password));
+    const headers = {'Content-Type': 'application/json' };
+    const body = {
+      email: username,
+      password: password
+    };
+
+    console.log("url: " + this.loginURL)
+
+    return this.httpClient.post(
+      this.loginURL,
+      body,
+      { headers }
+    )
   }
+
+  // login(username: string, password: string) {
+  //   return from(signInWithEmailAndPassword(this.auth, username, password));
+  // }
 
   logout() {
     sessionStorage.clear()

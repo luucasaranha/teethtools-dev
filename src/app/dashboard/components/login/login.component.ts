@@ -41,10 +41,15 @@ export class LoginComponent implements OnInit {
 
     const {email, password} = this.loginForm.value;
 
+
     this.authService.login(email!, password!)
       .subscribe({
-        complete: () => {
+        next: data => {
+          console.log(data)
+          sessionStorage.setItem("loginHash", this.generateHash(email!, password!))
           sessionStorage.setItem("loggedIn", "true")
+          this.authService.isLoggedIn$.next(true)
+
           this.router.navigate(['/patients']);
         },
         error: () => {
@@ -52,6 +57,10 @@ export class LoginComponent implements OnInit {
           this.clearForm()
         }
       })
+  }
+
+  generateHash(email: string, password: string): string {
+    return btoa(email + ":" + password)
   }
 
   clearForm() {

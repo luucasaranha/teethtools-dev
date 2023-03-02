@@ -11,8 +11,8 @@ import {LoadingService} from "../../services/loading-service/loading.service";
   animations: [hideAnimation, menuAnimation]
 })
 export class WrapperComponent {
-  // isExpanded: boolean = true;
   state = 'opened';
+  isUserAuthenticated$ =  this.authService.isLoggedIn$
 
   loading: Subject<boolean> = this.loaderService.loading$
 

@@ -1,14 +1,13 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {User} from "../../model/user";
+import {environment} from "../../../../../environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UpdatePatientService {
-
-  private readonly baseUrl = 'https://odonto-api-dev.herokuapp.com/api'
-  private readonly updateURL = this.baseUrl + '/v1/patients/update';
+  private readonly updateURL = environment.baseUrl + '/patients/update';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -16,11 +15,11 @@ export class UpdatePatientService {
   updatePatient(id: string, patient: any) {
     const authorizationHeader = new HttpHeaders(
       {
-        Authorization: 'Basic ' + this.generateHash(new User('dennis', 'instdenis8569'))
+        Authorization: 'Basic ' + sessionStorage.getItem("loginHash")
       });
 
     return this.httpClient.put(
-      this.updateURL + '?id=' + id,
+      this.updateURL + '?patientId=' + id,
       patient, {
         headers: authorizationHeader
       }
