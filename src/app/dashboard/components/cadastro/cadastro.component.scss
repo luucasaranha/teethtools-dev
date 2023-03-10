@@ -6,6 +6,14 @@ mat-card {
   display: flex;
 }
 
+#canvasElement {
+  display: none;
+}
+
+#imageElement {
+  display: none;
+}
+
 .container-wrap {
   flex-wrap: wrap;
 }

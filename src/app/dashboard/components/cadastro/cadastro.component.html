@@ -1,11 +1,36 @@
 <div>
+
   <mat-card class="mat-elevation-z8">
+
+    <video id="imageElement" #imageElement></video>
+    <canvas  id="canvasElement" #canvasElement></canvas>
 
     <mat-toolbar color="accent">
       <span class="header">Cadastro de pacientes</span>
     </mat-toolbar>
 
+    <div class="file-upload">
+      <label>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+
+        <button mat-button color="primary" class="upload-button">
+          <mat-icon>cloud_upload</mat-icon>
+          <span (click)="clickInput()">Selecionar um arquivo</span>
+        </button>
+
+        <button mat-button color="primary" class="upload-button">
+          <mat-icon>add_a_photo</mat-icon>
+          <span (click)="captureImage()">Capturar imagem</span>
+        </button>
+
+      </label>
+
+      <div class="file-name">{{ fileName }}</div>
+      <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Photo">
+    </div>
+
     <form [formGroup]="form" class="margin-form">
+
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="name"/>
       </mat-form-field>
