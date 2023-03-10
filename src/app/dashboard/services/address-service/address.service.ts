@@ -9,6 +9,10 @@ export class AddressService {
   constructor(private httpClient: HttpClient) { }
 
   searchAddress(cep: string) {
+    if(cep == null || cep === '') {
+      throw new Error('Cep is empty');
+    }
+
     cep = cep.replace(/\D/g, '');
 
     if(cep !== '') {

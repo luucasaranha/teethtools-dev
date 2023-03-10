@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Form, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
-import {Location} from "@angular/common";
-import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {Route, Router, Routes} from "@angular/router";
+import { Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
+import {CurrencyUtils} from "../../utils/currency.util";
 
 @Component({
   selector: 'app-cadastro',
@@ -46,10 +45,7 @@ export class CadastroComponent implements OnInit {
 
   checkAddress(){
     const cep = this.form.get('cep').value;
-
-    if (cep != null && cep !== '') {
-      this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
-    }
+    this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
   }
 
   populateForm(formData: any) {
@@ -58,7 +54,6 @@ export class CadastroComponent implements OnInit {
       district: formData.bairro,
       city: formData.localidade,
       state: formData.uf
-
     })
   }
 
@@ -66,8 +61,10 @@ export class CadastroComponent implements OnInit {
     if(!this.validateForm()) {
       return
     }
+
     let json = JSON.stringify(this.form.value.valueOf());
     this.cadastroService.createPatient(json)
+
     if (json) {
       alert("Paciente cadastrado com sucesso.")
       this.location.back()
@@ -80,25 +77,9 @@ export class CadastroComponent implements OnInit {
     this.location.back()
   }
 
-  formatCurrencyOnKeyPress(elementName: string) {
-    this.formatCurrency(elementName)
-  }
-
-  formatCurrency(elementName: any) {
-    let realValue = this.form.value[elementName]
-
-    if(realValue === null || realValue === "") {
-      this.form.controls[elementName].setValue(realValue)
-      return
-    }
-
-
-    let formattedValue = realValue.replace(/\D/g,'');
-    formattedValue = (formattedValue/100).toFixed(2) + '';
-    formattedValue = formattedValue.replace(".", ",");
-    formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-    this.form.controls[elementName].setValue('R$ ' + formattedValue)
+  valueFieldsOnKeyPress(elementName: string) {
+    this.form.controls[elementName]
+      .setValue(CurrencyUtils.formatCurrency(this.form.value[elementName]))
   }
 
   private getFormGroup() {

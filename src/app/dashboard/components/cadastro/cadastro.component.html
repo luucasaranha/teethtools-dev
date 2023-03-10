@@ -182,14 +182,14 @@
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Valor em aberto" formControlName="openValue"
-               (input)="formatCurrencyOnKeyPress('openValue')"
-               (click)="formatCurrencyOnKeyPress('openValue')"/>
+               (input)="valueFieldsOnKeyPress('openValue')"
+               (click)="valueFieldsOnKeyPress('openValue')"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Valor total do tratamento" formControlName="investedValue"
-               (input)="formatCurrencyOnKeyPress('investedValue')"
-               (click)="formatCurrencyOnKeyPress('investedValue')"/>
+               (input)="valueFieldsOnKeyPress('investedValue')"
+               (click)="valueFieldsOnKeyPress('investedValue')"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
