@@ -6,6 +6,8 @@ import { Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
 import {CurrencyUtils} from "../../utils/currency.util";
 import {PatientForm} from "../../model/patient.form";
+import {CameraService} from "../../services/camera-service/camera.service";
+import * as stream from "stream";
 
 @Component({
   selector: 'app-cadastro',
@@ -51,14 +53,13 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private addressService: AddressService,
+    private cameraService: CameraService
   ) {
     this.form = this.formBuilder.group(this.patientForm)
   }
 
   @ViewChild('imageElement') imageElement: ElementRef<HTMLVideoElement>;
   @ViewChild('canvasElement') canvasElement: ElementRef<HTMLCanvasElement>;
-
-  videoStream: MediaStream;
 
   selectedFile: File = null;
   fileName = '';
@@ -80,45 +81,11 @@ export class CadastroComponent implements OnInit {
     input.click();
   }
 
-  captureImage() {
-    const captureWidth = 1280;
-    const captureHeight = 720;
-
-    let imageElement = this.imageElement.nativeElement;
-    let canvasElement = this.canvasElement.nativeElement;
-
-    navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
-      this.videoStream = stream;
-      imageElement.srcObject = stream;
-      imageElement.play();
-    }).catch(error => {
-      console.error('Error accessing camera', error);
-    });
-
-    imageElement.addEventListener('loadeddata', () => {
-      if (this.videoStream && this.videoStream.getTracks) {
-        canvasElement.width = captureWidth;
-        canvasElement.height = captureHeight;
-
-        const scaleFactor = Math.min(
-          captureWidth / imageElement.videoWidth,
-          captureHeight / imageElement.videoHeight
-        );
-
-        const scaledWidth = imageElement.videoWidth * scaleFactor;
-        const scaledHeight = imageElement.videoHeight * scaleFactor;
-        const x = (captureWidth - scaledWidth) / 2;
-        const y = (captureHeight - scaledHeight) / 2;
-
-        const context = canvasElement.getContext('2d');
-        context.drawImage(imageElement, x, y, scaledWidth, scaledHeight);
-
-        imageElement.pause();
-        this.videoStream.getTracks().forEach(track => track.stop());
-      }
-    });
+  async captureImage() {
+    this.cameraService.captureImage(this.imageElement, this.canvasElement).then(stream => {
+      console.log(stream)
+    })
   }
-
 
   ngOnInit(): void {
   }
