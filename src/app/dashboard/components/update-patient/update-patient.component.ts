@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
 import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
+import {CurrencyUtils} from "../../utils/currency.util";
 
 @Component({
   selector: 'app-update-patient',
@@ -127,10 +128,7 @@ export class UpdatePatientComponent {
 
   checkAddress(){
     const cep = this.form.get('cep').value;
-
-    if (cep != null && cep !== '') {
-      this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
-    }
+    this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData)) // TODO: Tratamento para erro da API
   }
 
   populateForm(formData: any) {
@@ -163,24 +161,9 @@ export class UpdatePatientComponent {
     this.location.back()
   }
 
-  formatCurrencyOnKeyPress(elementName: string) {
-    this.formatCurrency(elementName)
-  }
-
-  formatCurrency(elementName: any) {
-    let realValue = this.form.value[elementName]
-
-    if (realValue === null || realValue === "") {
-      this.form.controls[elementName].setValue(realValue)
-      return
-    }
-
-    let formattedValue = realValue.replace(/\D/g, '');
-    formattedValue = (formattedValue / 100).toFixed(2) + '';
-    formattedValue = formattedValue.replace(".", ",");
-    formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-    this.form.controls[elementName].setValue('R$ ' + formattedValue)
+  valueFieldOnKeyPress(elementName: string) {
+    this.form.controls[elementName]
+      .setValue(CurrencyUtils.formatCurrency(this.form.value[elementName]))
   }
 
 }
