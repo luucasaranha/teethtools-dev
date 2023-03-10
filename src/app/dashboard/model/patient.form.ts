@@ -1,28 +1,29 @@
-export interface IPatient {
-  id: string;
-  criticity: string;
-  lastVisit: string;
+export interface PatientForm {
+  id: string,
   name: string;
-  origin: string;
-  birthDate: string;
-  age: string;
   gender: string;
-  status: string;
-  anniversaryMonth: string;
+  lastVisit: string;
+  age: string;
+  birthDate: string;
   address: string;
   cep: string;
   district: string;
+  city: string;
+  state: string;
+  origin: string;
   number: string;
   whatsapp: string;
   instagram: string;
   facebook: string;
   email: string;
   bestCommunicationChannel: string;
+  status: string;
+  criticity: string;
   speciality: string;
   proceeds: string;
+  action: string;
+  observations: string;
   financial: string;
   investedValue: string;
   openValue: string;
-  action: string;
-  observations: string;
 }

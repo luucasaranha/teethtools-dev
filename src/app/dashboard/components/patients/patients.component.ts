@@ -11,6 +11,7 @@ import {LoadingService} from "../../services/loading-service/loading.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ResponseError} from "../../model/error";
+import {PatientFormSharedServiceService} from "../../services/patient-form-shared/patient-form-shared-service.service";
 
 @Component({
   selector: 'app-patients',
@@ -38,7 +39,7 @@ export class PatientsComponent implements OnInit {
     private patientService: PatientsService,
     private deletePatientService: DeletePatientService,
     private router: Router,
-    private authService: AuthenticationService
+    private patientFormShared: PatientFormSharedServiceService
   ) {
   }
 
@@ -103,7 +104,8 @@ export class PatientsComponent implements OnInit {
   }
 
   private navigateToUpdatePage(element: any) {
-    this.router.navigate(['update-patient', element])
+    this.patientFormShared.updateFormData(element)
+    this.router.navigate(['update-patient'])
   }
 
   setDataSourceAttributes() {

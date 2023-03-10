@@ -6,6 +6,8 @@ import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
 import {CurrencyUtils} from "../../utils/currency.util";
+import {PatientForm} from "../../model/patient.form";
+import {PatientFormSharedServiceService} from "../../services/patient-form-shared/patient-form-shared-service.service";
 
 @Component({
   selector: 'app-update-patient',
@@ -15,6 +17,35 @@ import {CurrencyUtils} from "../../utils/currency.util";
 export class UpdatePatientComponent implements OnInit {
 
   public form: FormGroup
+  private patientForm: PatientForm = {
+    id: null,
+    name: null,
+    gender: null,
+    lastVisit: null,
+    age: null,
+    birthDate: null,
+    address: null,
+    cep: null,
+    district: null,
+    city: null,
+    state: null,
+    origin: null,
+    number: null,
+    whatsapp: null,
+    instagram: null,
+    facebook: null,
+    email: null,
+    bestCommunicationChannel: null,
+    status: null,
+    criticity: null,
+    speciality: null,
+    proceeds: null,
+    action: null,
+    observations: null,
+    financial: null,
+    investedValue: null,
+    openValue: null
+  };
 
   private id: string = ''
   private params: any
@@ -25,42 +56,19 @@ export class UpdatePatientComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private patientFormShared: PatientFormSharedServiceService
   ) {
-    this.form = this.formBuilder.group({
-      id: [null],
-      criticity: [null],
-      lastVisit: [null],
-      name: [null],
-      origin: [null],
-      birthDate: [null],
-      age: [null],
-      gender: [null],
-      status: [null],
-      anniversaryMonth: [null],
-      address: [null],
-      cep: [null],
-      district: [null],
-      number: [null],
-      city: [null],
-      state: [null],
-      whatsapp: [null],
-      instagram: [null],
-      facebook: [null],
-      email: [null],
-      bestCommunicationChannel: [null],
-      speciality: [null],
-      proceeds: [null],
-      financial: [null],
-      investedValue: [null],
-      openValue: [null],
-      action: [null],
-      observations: [null],
-    });
+    this.startForm();
+  }
 
-    this.route.params.subscribe(params => {
+  ngOnInit() {}
+
+  private startForm() {
+    this.form = this.formBuilder.group(this.patientForm)
+
+    this.patientFormShared.formData$.subscribe(params => {
       this.params = params
-      this.id = params['id']
       this.form = this.formBuilder.group({
         id: [this.params['id']],
         criticity: [this.params['criticity']],
@@ -93,10 +101,6 @@ export class UpdatePatientComponent implements OnInit {
       });
 
     })
-  }
-
-  ngOnInit() {
-
   }
 
   validateForm(): boolean {
