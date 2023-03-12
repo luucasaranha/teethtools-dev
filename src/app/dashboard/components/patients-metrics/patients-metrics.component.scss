@@ -1,0 +1,37 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  background-color: #ccc;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #eee;
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+.metrics {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.chart {
+  height: 300px;
+  background-color: #fff;
+  padding: 1rem;
+}
