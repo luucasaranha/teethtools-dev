@@ -8,16 +8,6 @@
   height: 100vh;
 }
 
-.header {
-  grid-area: header;
-  background-color: #ccc;
-}
-
-.sidebar {
-  grid-area: sidebar;
-  background-color: #eee;
-}
-
 .main {
   grid-area: main;
   display: flex;
