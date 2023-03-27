@@ -14,9 +14,10 @@ import {AddressService} from "../../services/address-service/address.service";
 })
 export class CadastroComponent implements OnInit {
 
+  birthdate: string;
+  age: number;
+
   public form: FormGroup;
- // Região da data
-  pipe = new DatePipe('pt-BR')
 
   constructor(
     private cadastroService: CreatePatientService,
@@ -54,30 +55,25 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  calculateAge() {
-    const birthDate = this.form.get('birthDate').value;
-
-    // Recupera a data presente
-    const dateNow = Date.now();
-
-    // Pipe para formatar a data
-    const formattedDate = this.pipe.transform(dateNow, 'short')
-
-    if(birthDate){
-      const convertAge = new Date(birthDate);
-      console.log("convertAge",convertAge)
-
-      // Calculo de diferença entre as datas
-      const timeDiff = Math.abs( - convertAge.getTime());
-      console.log("timeDiff",timeDiff)
-      const calculatedAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
-      this.form.patchValue({
-        age: calculatedAge
-      })
-      console.log("Calculated Age", calculatedAge)
-      console.log("Age", this.form.get('age').value)
-    }
+  parseDateString(dateString: string): Date {
+    const [day, month, year] = dateString.split('/');
+    return new Date(Number(year), Number(month) - 1, Number(day));
   }
+
+  calculateAge() {
+    if(this.birthdate === '') {
+      this.age = null;
+      return;
+    }
+
+    const birthdateDate = this.parseDateString(this.birthdate);
+
+    const diff = new Date().getTime() - birthdateDate.getTime();
+    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+
+    this.age = age;
+  }
+
 
   populateForm(formData: any) {
     this.form.patchValue({

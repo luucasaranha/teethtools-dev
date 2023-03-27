@@ -16,16 +16,17 @@
             <mat-form-field class="full-width">
               <input
                 matInput
-                (input)="calculateAge()"
                 placeholder="Data de nascimento"
                 mask="00/00/0000"
                 formControlName="birthDate"
+                (change)="calculateAge()"
+                [(ngModel)]="birthdate"
               />
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Idade" formControlName="age"/>
+              <input matInput placeholder="Idade" formControlName="age" id="age" [(ngModel)]="age" readonly />
             </mat-form-field>
           </td>
         </tr>
