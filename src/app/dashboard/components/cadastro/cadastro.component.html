@@ -16,7 +16,8 @@
             <mat-form-field class="full-width">
               <input
                 matInput
-                placeholder="Data de nascimento (dd/mm/aaaa)"
+                (input)="calculateAge()"
+                placeholder="Data de nascimento"
                 mask="00/00/0000"
                 formControlName="birthDate"
               />

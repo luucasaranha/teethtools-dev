@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Form, FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
-import {Location} from "@angular/common";
+import {DatePipe, Location} from "@angular/common";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {Route, Router, Routes} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
@@ -15,6 +15,8 @@ import {AddressService} from "../../services/address-service/address.service";
 export class CadastroComponent implements OnInit {
 
   public form: FormGroup;
+ // Região da data
+  pipe = new DatePipe('pt-BR')
 
   constructor(
     private cadastroService: CreatePatientService,
@@ -49,6 +51,31 @@ export class CadastroComponent implements OnInit {
 
     if (cep != null && cep !== '') {
       this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
+    }
+  }
+
+  calculateAge() {
+    const birthDate = this.form.get('birthDate').value;
+
+    // Recupera a data presente
+    const dateNow = Date.now();
+
+    // Pipe para formatar a data
+    const formattedDate = this.pipe.transform(dateNow, 'short')
+
+    if(birthDate){
+      const convertAge = new Date(birthDate);
+      console.log("convertAge",convertAge)
+
+      // Calculo de diferença entre as datas
+      const timeDiff = Math.abs( - convertAge.getTime());
+      console.log("timeDiff",timeDiff)
+      const calculatedAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
+      this.form.patchValue({
+        age: calculatedAge
+      })
+      console.log("Calculated Age", calculatedAge)
+      console.log("Age", this.form.get('age').value)
     }
   }
 
