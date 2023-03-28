@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Form, FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
-import {Location} from "@angular/common";
+import {DatePipe, Location} from "@angular/common";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {Route, Router, Routes} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
@@ -13,6 +13,9 @@ import {AddressService} from "../../services/address-service/address.service";
   styleUrls: ['./cadastro.component.scss'],
 })
 export class CadastroComponent implements OnInit {
+
+  birthdate: string;
+  age: number;
 
   public form: FormGroup;
 
@@ -51,6 +54,29 @@ export class CadastroComponent implements OnInit {
       this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
     }
   }
+
+  parseDateString(dateString: string): Date {
+    const [day, month, year] = dateString.split('/');
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  }
+
+  calculateAge() {
+    if(this.birthdate === '') {
+      this.age = null;
+      return;
+    }
+
+    const birthdateDate = this.parseDateString(this.birthdate);
+
+    const diff = new Date().getTime() - birthdateDate.getTime();
+    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+
+    this.age = age;
+    this.form.patchValue({
+      age: age
+    })
+  }
+
 
   populateForm(formData: any) {
     this.form.patchValue({
