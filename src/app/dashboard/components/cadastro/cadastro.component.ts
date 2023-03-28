@@ -72,6 +72,9 @@ export class CadastroComponent implements OnInit {
     const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
 
     this.age = age;
+    this.form.patchValue({
+      age: age
+    })
   }
 
 
