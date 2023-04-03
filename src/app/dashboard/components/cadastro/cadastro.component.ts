@@ -16,6 +16,7 @@ export class CadastroComponent implements OnInit {
 
   birthdate: string;
   age: number;
+  originDescriptionDetailed: string;
 
   public form: FormGroup;
 
@@ -76,7 +77,6 @@ export class CadastroComponent implements OnInit {
       age: age
     })
   }
-
 
   populateForm(formData: any) {
     this.form.patchValue({
@@ -154,6 +154,7 @@ export class CadastroComponent implements OnInit {
       financial: [null],
       investedValue: [null],
       openValue: [null],
+      originDescription: [null],
     });
   }
 
