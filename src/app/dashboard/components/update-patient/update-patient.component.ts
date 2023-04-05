@@ -18,6 +18,8 @@ export class UpdatePatientComponent implements OnInit {
   private id: string = ''
   private params: any
 
+  originDescriptionDetailed: string;
+
   constructor(
     private updateService: UpdatePatientService,
     private formBuilder: FormBuilder,
@@ -55,6 +57,7 @@ export class UpdatePatientComponent implements OnInit {
       openValue: [null],
       action: [null],
       observations: [null],
+      originDescription: [null]
     });
 
     this.route.params.subscribe(params => {
@@ -88,7 +91,8 @@ export class UpdatePatientComponent implements OnInit {
         investedValue: [this.params['investedValue']],
         openValue: [this.params['openValue']],
         action: [this.params['action']],
-        observations: [this.params['observations']]
+        observations: [this.params['observations']],
+        originDescription: [this.params['originDescription'] === 'null' ? '' : this.params['originDescription']]
       });
 
     })
