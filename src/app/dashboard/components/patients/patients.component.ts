@@ -11,6 +11,7 @@ import {LoadingService} from "../../services/loading-service/loading.service";
 import {AuthenticationService} from "../../services/authentication/authentication.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ResponseError} from "../../model/error";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-patients',
@@ -38,7 +39,7 @@ export class PatientsComponent implements OnInit {
     private patientService: PatientsService,
     private deletePatientService: DeletePatientService,
     private router: Router,
-    private authService: AuthenticationService
+    private toastrService: ToastrService
   ) {
   }
 
@@ -72,13 +73,13 @@ export class PatientsComponent implements OnInit {
     this.deletePatientService.deletePatient(element['id'])
       .subscribe({
         complete: () => {
-          alert("Paciente " + element['name'] + " deletado com sucesso")
+          this.toastrService.success('Paciente ' + element['name'] + ' deletado com sucesso')
           this.loadList()
         },
         error: err => {
           const errorObj = (err as HttpErrorResponse).error
           const parsedError = (JSON.parse(JSON.stringify(errorObj))) as ResponseError
-          alert(parsedError.errorMessage)
+          this.toastrService.error(parsedError.errorMessage)
         }
       })
   }
@@ -92,7 +93,7 @@ export class PatientsComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        alert("Ocorreu um erro, tente novamente mais tarde")
+        this.toastrService.error('Ocorreu um erro, tente novamente mais tarde')
         console.log(error)
       }
     })

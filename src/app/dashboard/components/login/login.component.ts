@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from "../../services/authentication/authentication.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
   }
 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/patients']);
         },
         error: () => {
-          alert("credenciais inválidas")
+          this.toastrService.error('Usuario ou senha inválidos', 'Alerta');
           this.clearForm()
         }
       })
