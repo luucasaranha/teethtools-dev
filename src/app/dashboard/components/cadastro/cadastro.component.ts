@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Form, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
-import {DatePipe, Location} from "@angular/common";
-import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {Route, Router, Routes} from "@angular/router";
+import {Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-cadastro',
@@ -25,6 +24,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private addressService: AddressService,
+    private toastrService: ToastrService
   ) {
     this.form = this.getFormGroup();
   }
@@ -36,12 +36,12 @@ export class CadastroComponent implements OnInit {
     let formData = this.form.value
 
     if(StringHelper.isEmpty(formData.name)) {
-      alert("Campo nome deve ser preenchido");
+      this.toastrService.warning("O nome não pode estar vazio", "Atenção")
       return false;
     }
 
     if(!StringHelper.isDateValid(formData['birthDate'])) {
-      alert("Campo data com valor inválido");
+      this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
       return false;
     }
 
@@ -95,10 +95,10 @@ export class CadastroComponent implements OnInit {
     let json = JSON.stringify(this.form.value.valueOf());
     this.cadastroService.createPatient(json)
     if (json) {
-      alert("Paciente cadastrado com sucesso.")
+      this.toastrService.success('Paciente cadastrado com sucesso')
       this.location.back()
     } else {
-      alert("Falha ao cadastrar o paciente.")
+      this.toastrService.error('Erro ao cadastrar paciente')
     }
   }
 

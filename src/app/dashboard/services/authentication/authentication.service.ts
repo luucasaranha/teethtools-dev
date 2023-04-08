@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Auth, authState, signInWithEmailAndPassword, user} from "@angular/fire/auth";
+import {Auth, user} from "@angular/fire/auth";
 import {BehaviorSubject, from} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../../model/user";
 import {environment} from "../../../../../environment";
 
 @Injectable({

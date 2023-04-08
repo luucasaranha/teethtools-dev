@@ -1,7 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Patient} from "../../model/Patient";
-import {User} from "../../model/user";
 import {environment} from "../../../../../environment";
 
 @Injectable({

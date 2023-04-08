@@ -26,6 +26,7 @@
     "firebase": "^9.14.0",
     "ng2-currency-mask": "^13.0.3",
     "ngx-mask": "^14.2.4",
+    "ngx-toastr": "^16.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

@@ -5,6 +5,7 @@ import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-update-patient',
@@ -26,7 +27,8 @@ export class UpdatePatientComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private toastrService: ToastrService
   ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -106,12 +108,12 @@ export class UpdatePatientComponent implements OnInit {
     let formData = this.form.value
 
     if (StringHelper.isEmpty(formData.name)) {
-      alert("Campo nome deve ser preenchido");
+      this.toastrService.warning("O nome não pode estar vazio", "Atenção")
       return false;
     }
 
     if (!StringHelper.isDateValid(formData['birthDate'])) {
-      alert("Campo data com valor inválido");
+      this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
       return false;
     }
 
@@ -143,12 +145,11 @@ export class UpdatePatientComponent implements OnInit {
 
     this.updateService.updatePatient(this.id, this.form.value).subscribe({
       next: () => {
-        alert("Paciente editado com sucesso.")
+        this.toastrService.success('Paciente atualizado com sucesso')
         this.router.navigate(['patients'])
       },
-      error: err => {
-        alert("Falha ao editar o paciente.}")
-        console.log(err)
+      error: () => {
+        this.toastrService.error('Erro ao atualizar paciente')
       }
     })
   }
