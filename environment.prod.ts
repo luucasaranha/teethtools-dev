@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8080/api/v1'
+  baseUrl: 'https://odonto-api-dev.herokuapp.com/api/v1'
 }
