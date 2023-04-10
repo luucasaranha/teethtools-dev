@@ -16,15 +16,17 @@
             <mat-form-field class="full-width">
               <input
                 matInput
-                placeholder="Data de nascimento (dd/mm/aaaa)"
+                placeholder="Data de nascimento"
                 mask="00/00/0000"
                 formControlName="birthDate"
+                (change)="this.calculateAgeService.calculateAge(birthdate, form)"
+                [(ngModel)]="birthdate"
               />
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="full-width">
-              <input matInput placeholder="Idade" formControlName="age"/>
+              <input matInput placeholder="Idade" formControlName="age" id="age" [(ngModel)]="age" readonly />
             </mat-form-field>
           </td>
         </tr>
@@ -99,7 +101,7 @@
           <td>
             <mat-form-field class="full-width">
               <mat-label>Como nos conheceu?</mat-label>
-              <mat-select formControlName="origin">
+              <mat-select formControlName="origin" [(ngModel)]="originDescriptionDetailed">
                 <mat-option value="N/A">Nenhuma</mat-option>
                 <mat-option value="Internet">Internet</mat-option>
                 <mat-option value="Anuncio">Anuncio</mat-option>
@@ -124,6 +126,10 @@
           </td>
         </tr>
       </table>
+
+          <mat-form-field *ngIf="originDescriptionDetailed == 'Amigo' || originDescriptionDetailed == 'Outros'" class="full-width">
+            <input matInput placeholder="Detalhes de como nos conheceu" formControlName="originDescription" class="full-width"/>
+          </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Email" formControlName="email"/>

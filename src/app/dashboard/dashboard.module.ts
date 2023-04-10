@@ -28,7 +28,11 @@ import {NgxMaskModule} from "ngx-mask";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {LoadingComponent} from './components/loading/loading.component';
 import {PatientsMetricsComponent} from "./components/patients-metrics/patients-metrics.component";
+import {GlobalConfig, ToastrModule} from "ngx-toastr";
 
+const toastrConfig: Partial<GlobalConfig> = {
+  positionClass: 'toast-center'
+};
 @NgModule({
     declarations: [
         WrapperComponent,
@@ -67,7 +71,8 @@ import {PatientsMetricsComponent} from "./components/patients-metrics/patients-m
         MatMenuModule,
         FormsModule,
         NgxMaskModule,
-        MatExpansionModule
+        MatExpansionModule,
+        ToastrModule.forRoot()
     ]
 })
 export class DashboardModule {}

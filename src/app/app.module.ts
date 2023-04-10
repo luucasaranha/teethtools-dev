@@ -17,6 +17,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {LoadingInterceptorService} from "./dashboard/services/interceptor/loading-interceptor.service";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {GlobalConfig, ToastrModule} from "ngx-toastr";
+
+const toastrConfig: Partial<GlobalConfig> = {
+  positionClass: 'toast-center'
+};
 
 @NgModule({
   declarations: [
@@ -38,7 +43,11 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     MatButtonModule,
     provideAuth(() => getAuth()),
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      timeOut: 2000
+    })
   ],
   providers: [
     {

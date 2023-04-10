@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Form, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
-import {AuthenticationService} from "../../services/authentication/authentication.service";
-import {Route, Router, Routes} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
+import {ToastrService} from "ngx-toastr";
+import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -14,6 +14,10 @@ import {AddressService} from "../../services/address-service/address.service";
 })
 export class CadastroComponent implements OnInit {
 
+  birthdate: string;
+  age: number;
+  originDescriptionDetailed: string;
+
   public form: FormGroup;
 
   constructor(
@@ -21,6 +25,8 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private addressService: AddressService,
+    private toastrService: ToastrService,
+    public calculateAgeService: CalculateAgeService
   ) {
     this.form = this.getFormGroup();
   }
@@ -32,12 +38,12 @@ export class CadastroComponent implements OnInit {
     let formData = this.form.value
 
     if(StringHelper.isEmpty(formData.name)) {
-      alert("Campo nome deve ser preenchido");
+      this.toastrService.warning("O nome não pode estar vazio", "Atenção")
       return false;
     }
 
     if(!StringHelper.isDateValid(formData['birthDate'])) {
-      alert("Campo data com valor inválido");
+      this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
       return false;
     }
 
@@ -50,6 +56,28 @@ export class CadastroComponent implements OnInit {
     if (cep != null && cep !== '') {
       this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
     }
+  }
+
+  parseDateString(dateString: string): Date {
+    const [day, month, year] = dateString.split('/');
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  }
+
+  calculateAge() {
+    if(this.birthdate === '') {
+      this.age = null;
+      return;
+    }
+
+    const birthdateDate = this.parseDateString(this.birthdate);
+
+    const diff = new Date().getTime() - birthdateDate.getTime();
+    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+
+    this.age = age;
+    this.form.patchValue({
+      age: age
+    })
   }
 
   populateForm(formData: any) {
@@ -69,10 +97,10 @@ export class CadastroComponent implements OnInit {
     let json = JSON.stringify(this.form.value.valueOf());
     this.cadastroService.createPatient(json)
     if (json) {
-      alert("Paciente cadastrado com sucesso.")
+      this.toastrService.success('Paciente cadastrado com sucesso')
       this.location.back()
     } else {
-      alert("Falha ao cadastrar o paciente.")
+      this.toastrService.error('Erro ao cadastrar paciente')
     }
   }
 
@@ -128,6 +156,7 @@ export class CadastroComponent implements OnInit {
       financial: [null],
       investedValue: [null],
       openValue: [null],
+      originDescription: [null],
     });
   }
 
