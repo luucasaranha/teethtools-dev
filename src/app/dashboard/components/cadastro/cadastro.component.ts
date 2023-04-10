@@ -5,6 +5,7 @@ import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
+import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -24,7 +25,8 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private addressService: AddressService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    public calculateAgeService: CalculateAgeService
   ) {
     this.form = this.getFormGroup();
   }

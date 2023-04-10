@@ -19,7 +19,7 @@
                 placeholder="Data de nascimento"
                 mask="00/00/0000"
                 formControlName="birthDate"
-                (change)="calculateAge()"
+                (change)="this.calculateAgeService.calculateAge(birthdate, form)"
                 [(ngModel)]="birthdate"
               />
             </mat-form-field>

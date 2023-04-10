@@ -6,6 +6,7 @@ import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
+import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
 
 @Component({
   selector: 'app-update-patient',
@@ -19,6 +20,8 @@ export class UpdatePatientComponent implements OnInit {
   private id: string = ''
   private params: any
 
+  birthdate: string;
+
   originDescriptionDetailed: string;
 
   constructor(
@@ -28,7 +31,8 @@ export class UpdatePatientComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private addressService: AddressService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    public calculateAgeService: CalculateAgeService
   ) {
     this.form = this.formBuilder.group({
       id: [null],
