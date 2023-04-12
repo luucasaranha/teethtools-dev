@@ -18,8 +18,8 @@ import {ToastrService} from "ngx-toastr";
 export class PatientsComponent implements OnInit {
   public displayedColumns = [
     'name',
-    'gender',
     'lastVisit',
+    'gender',
     'status',
     'number',
     'anniversaryMonth',

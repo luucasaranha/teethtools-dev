@@ -8,6 +8,7 @@ import {SystemUnavailableComponent} from "../system-unavailable/system-unavailab
 import {UpdatePatientComponent} from "./components/update-patient/update-patient.component";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuardService} from "./services/auth-guard/auth-guard.service";
+import {PatientsMetricsComponent} from "./components/patients-metrics/patients-metrics.component";
 
 // const redirectToLogin() = () => redirectUnauthorizedTo(['login']);
 // const redirectToHome() = () => redirectLoggedInTo(['home']);
@@ -46,6 +47,11 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         // canActivate: [AuthGuardService]
+      },
+      {
+        path: 'patient-metrics',
+        component: PatientsMetricsComponent,
+        canActivate: [AuthGuardService]
       }
     ],
   },

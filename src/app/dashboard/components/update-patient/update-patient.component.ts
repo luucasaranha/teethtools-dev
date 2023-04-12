@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UpdatePatientService} from "../../services/update-patient/update-patient.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {StringHelper} from "../../helper/string.helper";
@@ -7,13 +7,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
 import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
+import {CurrencyUtils} from "../../utils/currency.util";
 
 @Component({
   selector: 'app-update-patient',
   templateUrl: './update-patient.component.html',
   styleUrls: ['./update-patient.component.scss']
 })
-export class UpdatePatientComponent implements OnInit {
+export class UpdatePatientComponent {
 
   public form: FormGroup
 
@@ -104,10 +105,6 @@ export class UpdatePatientComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-
-  }
-
   validateForm(): boolean {
     let formData = this.form.value
 
@@ -121,15 +118,17 @@ export class UpdatePatientComponent implements OnInit {
       return false;
     }
 
+    if(StringHelper.isEmpty(formData['gender'])) {
+      this.toastrService.warning('O genero não pode estar vazio', 'Atenção')
+      return false;
+    }
+
     return true;
   }
 
   checkAddress(){
     const cep = this.form.get('cep').value;
-
-    if (cep != null && cep !== '') {
-      this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
-    }
+    this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData)) // TODO: Tratamento para erro da API
   }
 
   populateForm(formData: any) {
@@ -162,24 +161,9 @@ export class UpdatePatientComponent implements OnInit {
     this.location.back()
   }
 
-  formatCurrencyOnKeyPress(elementName: string) {
-    this.formatCurrency(elementName)
-  }
-
-  formatCurrency(elementName: any) {
-    let realValue = this.form.value[elementName]
-
-    if (realValue === null || realValue === "") {
-      this.form.controls[elementName].setValue(realValue)
-      return
-    }
-
-    let formattedValue = realValue.replace(/\D/g, '');
-    formattedValue = (formattedValue / 100).toFixed(2) + '';
-    formattedValue = formattedValue.replace(".", ",");
-    formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-    this.form.controls[elementName].setValue('R$ ' + formattedValue)
+  valueFieldOnKeyPress(elementName: string) {
+    this.form.controls[elementName]
+      .setValue(CurrencyUtils.formatCurrency(this.form.value[elementName]))
   }
 
 }

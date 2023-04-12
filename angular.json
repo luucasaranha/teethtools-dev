@@ -41,7 +41,7 @@
               "fileReplacements": [
                 {
                   "replace": "environment.ts",
-                  "with": "environment.prod.ts"
+                  "with": "environment.local.ts"
                 }
               ],
               "budgets": [
@@ -62,7 +62,7 @@
               "fileReplacements": [
                 {
                   "replace": "environment.ts",
-                  "with": "environment.dev.ts"
+                  "with": "environment.local.ts"
                 }
               ],
               "buildOptimizer": false,

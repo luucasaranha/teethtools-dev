@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
@@ -12,7 +12,7 @@ import {CalculateAgeService} from "../../services/calculate-age/calculate-age.se
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss'],
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent {
 
   birthdate: string;
   age: number;
@@ -31,53 +31,33 @@ export class CadastroComponent implements OnInit {
     this.form = this.getFormGroup();
   }
 
-  ngOnInit(): void {
-  }
-
   validateForm(): boolean {
     let formData = this.form.value
 
-    if(StringHelper.isEmpty(formData.name)) {
+    if (StringHelper.isEmpty(formData.name)) {
       this.toastrService.warning("O nome não pode estar vazio", "Atenção")
       return false;
     }
 
-    if(!StringHelper.isDateValid(formData['birthDate'])) {
+    if (!StringHelper.isDateValid(formData['birthDate'])) {
       this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
+      return false;
+    }
+
+    if (StringHelper.isEmpty(formData['gender'])) {
+      this.toastrService.warning('O genero não pode estar vazio', 'Atenção')
       return false;
     }
 
     return true;
   }
 
-  checkAddress(){
+  checkAddress() {
     const cep = this.form.get('cep').value;
 
     if (cep != null && cep !== '') {
       this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData))
     }
-  }
-
-  parseDateString(dateString: string): Date {
-    const [day, month, year] = dateString.split('/');
-    return new Date(Number(year), Number(month) - 1, Number(day));
-  }
-
-  calculateAge() {
-    if(this.birthdate === '') {
-      this.age = null;
-      return;
-    }
-
-    const birthdateDate = this.parseDateString(this.birthdate);
-
-    const diff = new Date().getTime() - birthdateDate.getTime();
-    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-
-    this.age = age;
-    this.form.patchValue({
-      age: age
-    })
   }
 
   populateForm(formData: any) {
@@ -91,7 +71,7 @@ export class CadastroComponent implements OnInit {
   }
 
   submitBtnClick() {
-    if(!this.validateForm()) {
+    if (!this.validateForm()) {
       return
     }
     let json = JSON.stringify(this.form.value.valueOf());
@@ -115,14 +95,14 @@ export class CadastroComponent implements OnInit {
   formatCurrency(elementName: any) {
     let realValue = this.form.value[elementName]
 
-    if(realValue === null || realValue === "") {
+    if (realValue === null || realValue === "") {
       this.form.controls[elementName].setValue(realValue)
       return
     }
 
 
-    let formattedValue = realValue.replace(/\D/g,'');
-    formattedValue = (formattedValue/100).toFixed(2) + '';
+    let formattedValue = realValue.replace(/\D/g, '');
+    formattedValue = (formattedValue / 100).toFixed(2) + '';
     formattedValue = formattedValue.replace(".", ",");
     formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 

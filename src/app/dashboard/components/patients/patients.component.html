@@ -14,14 +14,15 @@
         <td *matCellDef="let element" mat-cell>{{ element.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="gender">
-        <th *matHeaderCellDef mat-sort-header mat-header-cell>Gênero</th>
-        <td *matCellDef="let element" mat-cell>{{ element.gender }}</td>
-      </ng-container>
-
       <ng-container matColumnDef="lastVisit">
         <th *matHeaderCellDef mat-header-cell>Ultima visita</th>
         <td *matCellDef="let element" mat-cell>{{ element.lastVisit }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="gender">
+        <th *matHeaderCellDef mat-sort-header mat-header-cell>Gênero</th>
+        <td *matCellDef="let element" mat-cell>{{ element.gender }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
@@ -43,6 +44,7 @@
         <th *matHeaderCellDef mat-header-cell>Email</th>
         <td *matCellDef="let element" mat-cell>{{ element.email }}</td>
       </ng-container>
+
 
       <ng-container matColumnDef="anniversaryMonth">
         <th *matHeaderCellDef mat-header-cell>

@@ -1,6 +1,5 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {User} from "../../model/user";
 import {environment} from "../../../../../environment";
 
 @Injectable({
@@ -22,10 +21,6 @@ export class CreatePatientService {
     ).subscribe(response => {
       // console.log(response)
     })
-  }
-
-  generateHash(user: User): string {
-    return btoa(user.username + ":" + user.password)
   }
 
 }

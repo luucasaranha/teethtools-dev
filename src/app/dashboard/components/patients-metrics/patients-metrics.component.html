@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="main">
+    <div class="metrics">
+      <h1 class="heading">Métricas</h1>
+
+      <div class="grid-container">
+        <div class="grid-item">
+          <h2 class="subheading">Pacientes por gênero</h2>
+          <ul>
+            <li><span class="label">Masculino:</span> {{patientMetric.genderCount.male}}</li>
+            <li><span class="label">Feminino:</span> {{patientMetric.genderCount.female}}</li>
+          </ul>
+        </div>
+
+        <div class="grid-item">
+          <h2 class="subheading">Pacientes por status</h2>
+          <ul>
+            <li><span class="label">Ativo:</span> {{patientMetric.statusCount.ativos}}</li>
+            <li><span class="label">Outro:</span> {{patientMetric.statusCount.outros}}</li>
+            <li><span class="label">Cancelado:</span> {{patientMetric.statusCount.cancelados}}</li>
+            <li><span class="label">Finalizado:</span> {{patientMetric.statusCount.finalizado}}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
