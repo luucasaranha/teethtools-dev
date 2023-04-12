@@ -104,10 +104,6 @@ export class UpdatePatientComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-
-  }
-
   validateForm(): boolean {
     let formData = this.form.value
 
@@ -118,6 +114,11 @@ export class UpdatePatientComponent implements OnInit {
 
     if (!StringHelper.isDateValid(formData['birthDate'])) {
       this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
+      return false;
+    }
+
+    if(StringHelper.isEmpty(formData['gender'])) {
+      this.toastrService.warning('O genero não pode estar vazio', 'Atenção')
       return false;
     }
 
