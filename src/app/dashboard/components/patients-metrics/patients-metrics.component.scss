@@ -22,8 +22,6 @@
 }
 
 .heading {
-  text-align: center;
-  align-items: center;
   font-size: 2rem;
   margin-bottom: 2rem;
 }
@@ -34,6 +32,7 @@
 }
 
 .grid-container {
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
