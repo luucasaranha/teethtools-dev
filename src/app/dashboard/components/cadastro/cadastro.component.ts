@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
@@ -12,7 +12,7 @@ import {CalculateAgeService} from "../../services/calculate-age/calculate-age.se
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss'],
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent {
 
   birthdate: string;
   age: number;

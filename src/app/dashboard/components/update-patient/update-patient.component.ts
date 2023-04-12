@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UpdatePatientService} from "../../services/update-patient/update-patient.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {StringHelper} from "../../helper/string.helper";
@@ -13,7 +13,7 @@ import {CalculateAgeService} from "../../services/calculate-age/calculate-age.se
   templateUrl: './update-patient.component.html',
   styleUrls: ['./update-patient.component.scss']
 })
-export class UpdatePatientComponent implements OnInit {
+export class UpdatePatientComponent {
 
   public form: FormGroup
 
