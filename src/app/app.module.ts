@@ -46,7 +46,7 @@ const toastrConfig: Partial<GlobalConfig> = {
     DashboardModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
-      timeOut: 2000
+      timeOut: 2500
     })
   ],
   providers: [
