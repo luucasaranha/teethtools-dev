@@ -5,6 +5,12 @@
       <span class="header">Cadastro de pacientes</span>
     </mat-toolbar>
 
+    <div class="button-container">
+      <button mat-raised-button color="primary" [ngClass]="{'selected': isDadosSelected}" (click)="selectDados()">Dados</button>
+      <button mat-raised-button color="primary" [ngClass]="{'selected': !isDadosSelected}" (click)="selectFichaClinica()">Ficha Clínica</button>
+    </div>
+
+
     <form [formGroup]="form" class="margin-form">
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="name"/>

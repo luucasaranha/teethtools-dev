@@ -6,6 +6,23 @@ mat-card {
   display: flex;
 }
 
+.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.selected:focus,
+.selected:active {
+  background-color: #0062cc;
+  color: #fff;
+  outline: none;
+}
 .container-wrap {
   flex-wrap: wrap;
 }

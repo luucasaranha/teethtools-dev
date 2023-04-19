@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
 import {StringHelper} from "../../helper/string.helper";
@@ -12,11 +12,13 @@ import {CalculateAgeService} from "../../services/calculate-age/calculate-age.se
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss'],
 })
-export class CadastroComponent {
-
+export class CadastroComponent implements OnInit{
   birthdate: string;
   age: number;
   originDescriptionDetailed: string;
+
+  isDadosSelected = true;
+  isFichaClinicaSelected = false;
 
   public form: FormGroup;
 
@@ -29,6 +31,20 @@ export class CadastroComponent {
     public calculateAgeService: CalculateAgeService
   ) {
     this.form = this.getFormGroup();
+  }
+
+  ngOnInit(): void {
+    this.selectDados();
+  }
+
+  selectDados(): void {
+    this.isDadosSelected = true;
+    this.isFichaClinicaSelected = false;
+  }
+
+  selectFichaClinica(): void {
+    this.isDadosSelected = false;
+    this.isFichaClinicaSelected = true;
   }
 
   validateForm(): boolean {
