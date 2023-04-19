@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {UpdatePatientService} from "../../services/update-patient/update-patient.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../services/address-service/address.service";

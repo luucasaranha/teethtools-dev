@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CreatePatientService} from "../../services/create-patient/create-patient-service";
-import {StringHelper} from "../../helper/string.helper";
 import {Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
