@@ -2,12 +2,18 @@
   <mat-card class="mat-elevation-z8">
 
     <mat-toolbar color="accent">
-      <span class="header">Cadastro de pacientes</span>
+      <span class="header">Cadastrar Paciente</span>
     </mat-toolbar>
 
     <div class="button-container">
-      <button mat-raised-button color="primary" [ngClass]="{'selected': isDadosSelected}" (click)="selectDados()">Dados</button>
-      <button mat-raised-button color="primary" [ngClass]="{'selected': !isDadosSelected}" (click)="selectFichaClinica()">Ficha Clínica</button>
+      <button mat-raised-button color="primary" [ngClass]="{'selected': isDadosSelected}"
+              (click)="selectDados()">Dados
+      </button>
+
+      <button mat-raised-button color="primary" [ngClass]="{'selected': !isDadosSelected}"
+              (click)="selectFichaClinica()">Ficha Clínica
+      </button>
+
     </div>
 
 

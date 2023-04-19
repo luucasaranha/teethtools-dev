@@ -18,9 +18,7 @@ export class CreatePatientService {
       this.devInsertUrl,
       patientJson,
       this.options
-    ).subscribe(response => {
-      // console.log(response)
-    })
+    )
   }
 
 }

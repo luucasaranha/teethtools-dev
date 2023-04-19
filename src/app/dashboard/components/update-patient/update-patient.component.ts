@@ -8,6 +8,7 @@ import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
 import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
 import {CurrencyUtils} from "../../utils/currency.util";
+import {FormValidationService} from "../../services/form-validation/form-validation.service";
 
 @Component({
   selector: 'app-update-patient',
@@ -33,7 +34,8 @@ export class UpdatePatientComponent {
     private router: Router,
     private addressService: AddressService,
     private toastrService: ToastrService,
-    public calculateAgeService: CalculateAgeService
+    private formValidationService: FormValidationService,
+    public calculateAgeService: CalculateAgeService,
   ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -105,27 +107,6 @@ export class UpdatePatientComponent {
     })
   }
 
-  validateForm(): boolean {
-    let formData = this.form.value
-
-    if (StringHelper.isEmpty(formData.name)) {
-      this.toastrService.warning("O nome não pode estar vazio", "Atenção")
-      return false;
-    }
-
-    if (!StringHelper.isDateValid(formData['birthDate'])) {
-      this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
-      return false;
-    }
-
-    if(StringHelper.isEmpty(formData['gender'])) {
-      this.toastrService.warning('O genero não pode estar vazio', 'Atenção')
-      return false;
-    }
-
-    return true;
-  }
-
   checkAddress(){
     const cep = this.form.get('cep').value;
     this.addressService.searchAddress(cep).subscribe(formData => this.populateForm(formData)) // TODO: Tratamento para erro da API
@@ -142,7 +123,7 @@ export class UpdatePatientComponent {
   }
 
   submitBtnClick() {
-    if (!this.validateForm()) {
+    if (!this.formValidationService.validateForm(this.form)) {
       return
     }
 

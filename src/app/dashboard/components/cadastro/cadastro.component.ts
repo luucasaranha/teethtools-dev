@@ -6,6 +6,7 @@ import {Location} from "@angular/common";
 import {AddressService} from "../../services/address-service/address.service";
 import {ToastrService} from "ngx-toastr";
 import {CalculateAgeService} from "../../services/calculate-age/calculate-age.service";
+import {FormValidationService} from "../../services/form-validation/form-validation.service";
 
 @Component({
   selector: 'app-cadastro',
@@ -28,6 +29,7 @@ export class CadastroComponent implements OnInit{
     private location: Location,
     private addressService: AddressService,
     private toastrService: ToastrService,
+    private formValidationService: FormValidationService,
     public calculateAgeService: CalculateAgeService
   ) {
     this.form = this.getFormGroup();
@@ -45,27 +47,6 @@ export class CadastroComponent implements OnInit{
   selectFichaClinica(): void {
     this.isDadosSelected = false;
     this.isFichaClinicaSelected = true;
-  }
-
-  validateForm(): boolean {
-    let formData = this.form.value
-
-    if (StringHelper.isEmpty(formData.name)) {
-      this.toastrService.warning("O nome não pode estar vazio", "Atenção")
-      return false;
-    }
-
-    if (!StringHelper.isDateValid(formData['birthDate'])) {
-      this.toastrService.warning('A data de nascimento inserida não é válida', 'Atenção')
-      return false;
-    }
-
-    if (StringHelper.isEmpty(formData['gender'])) {
-      this.toastrService.warning('O genero não pode estar vazio', 'Atenção')
-      return false;
-    }
-
-    return true;
   }
 
   checkAddress() {
@@ -87,17 +68,23 @@ export class CadastroComponent implements OnInit{
   }
 
   submitBtnClick() {
-    if (!this.validateForm()) {
+    if (!this.formValidationService.validateForm(this.form)) {
       return
     }
+
     let json = JSON.stringify(this.form.value.valueOf());
-    this.cadastroService.createPatient(json)
-    if (json) {
-      this.toastrService.success('Paciente cadastrado com sucesso')
-      this.location.back()
-    } else {
-      this.toastrService.error('Erro ao cadastrar paciente')
-    }
+
+    this.cadastroService.createPatient(json).subscribe({
+      next: value => {
+        console.log(value)
+        this.toastrService.success('Paciente cadastrado com sucesso')
+        this.location.back()
+      },
+      error: err => {
+        console.log(err)
+        this.toastrService.error('Erro ao cadastrar paciente')
+      }
+    })
   }
 
   onBackPressed() {
